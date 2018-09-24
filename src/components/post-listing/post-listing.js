@@ -1,5 +1,5 @@
 import React from 'react'
-
+import striptags from 'striptags'
 import styles from './post-listing.module.css'
 import GatsbyLink from 'gatsby-link'
 
@@ -18,12 +18,16 @@ const PostListing = ({ post }) => {
     >
       <h2 dangerouslySetInnerHTML={{ __html: title }} />
       <p className={styles.date}>{post.date}</p>
-      {post.snippet && <p dangerouslySetInnerHTML={{ __html: post.snippet }} />}
+      {post.snippet && (
+        <div className={styles.snippet}>
+          <p>{striptags(post.snippet)}</p>
+        </div>
+      )}
       <div className={styles.cta}>
         <a className={styles.apply} href={post.path}>
           Apply Now
         </a>
-        <GatsbyLink to={post.slug}>Full Description</GatsbyLink>
+        <GatsbyLink to={`/jobs/${post.slug}`}>Full Description</GatsbyLink>
       </div>
     </article>
   )

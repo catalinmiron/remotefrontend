@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import striptags from 'striptags'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import styles from './post.module.css'
@@ -12,6 +13,13 @@ const Post = ({ data }) => {
   // Strip html from excerpts.
   const description = striptags(post.excerpt)
 
+  const title = `${
+    post.title
+    // TODO: this should be css.
+  } <span style="font-weight: normal;font-family: 'loraitalic'; text-transform: lowercase; font-size: 0.64em">at</span> ${
+    post.acf.company
+  }`
+
   return (
     <Layout>
       <Helmet
@@ -21,7 +29,7 @@ const Post = ({ data }) => {
       <article>
         <h1
           className={styles.title}
-          dangerouslySetInnerHTML={{ __html: post.title }}
+          dangerouslySetInnerHTML={{ __html: title }}
         />
         <a href={post.acf.apply_url}>Apply Now</a>
         <div

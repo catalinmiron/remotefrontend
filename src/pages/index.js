@@ -3,11 +3,10 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import Footer from '../components/footer/footer'
-import NewsletterSignup from '../components/newsletter-signup'
 import PostListing from '../components/post-listing/post-listing'
+import Header from '../components/header/header'
 
 import styles from './index.module.css'
-import Header from '../components/header/header'
 
 const Index = ({ data }) => {
   const jobs = data.allWordpressWpJobs.edges
@@ -34,6 +33,7 @@ const Index = ({ data }) => {
           })
           .map(({ node }) => (
             <PostListing
+              key={node.id}
               post={{
                 title: node.title,
                 path: node.acf.apply_url,
@@ -57,6 +57,7 @@ export const query = graphql`
     allWordpressWpJobs {
       edges {
         node {
+          id
           title
           excerpt
           slug

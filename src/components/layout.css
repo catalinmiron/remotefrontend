@@ -29,84 +29,84 @@ h6 {
 
 
 @font-face {
-  font-family: 'lorabold';
+  font-family: 'Lora';
   src: url('fonts/lora-bold-webfont.woff2') format('woff2'),
        url('fonts/lora-bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: 700;
   font-style: normal;
-
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'lorabold_italic';
+  font-family: 'Lora';
   src: url('fonts/lora-bolditalic-webfont.woff2') format('woff2'),
        url('fonts/lora-bolditalic-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
+  font-weight: 700;
+  font-style: italic;
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'loraitalic';
+  font-family: 'Lora';
   src: url('fonts/lora-italic-webfont.woff2') format('woff2'),
        url('fonts/lora-italic-webfont.woff') format('woff');
   font-weight: normal;
-  font-style: normal;
-
+  font-style: italic;
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'loraregular';
+  font-family: 'Lora';
   src: url('fonts/lora-regular-webfont.woff2') format('woff2'),
        url('fonts/lora-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'open_sans_condensedbold';
+  font-family: 'Open Sans Condensed';
   src: url('fonts/opensanscondensed-bold-webfont.woff2') format('woff2'),
        url('fonts/opensanscondensed-bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: 700;
   font-style: normal;
-
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'open_sans_condensedlight';
+  font-family: 'Open Sans Condensed';
   src: url('fonts/opensanscondensed-light-webfont.woff2') format('woff2'),
        url('fonts/opensanscondensed-light-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal;
-
+  font-display: fallback;
 }
 
 
 
 
 @font-face {
-  font-family: 'open_sans_condensedLtIt';
+  font-family: 'Open Sans Condensed';
   src: url('fonts/opensanscondensed-lightitalic-webfont.woff2') format('woff2'),
        url('fonts/opensanscondensed-lightitalic-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
+  font-weight: 300;
+  font-style: italic;
+  font-display: fallback;
 }
 
 h1,
@@ -116,7 +116,8 @@ h4,
 h5,
 h6,
 a {
-  font-family: 'open_sans_condensedbold';
+  font-family: 'Open Sans Condensed', -apple-system, system-ui, SegoeUI, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 1.2;
 }
@@ -125,7 +126,7 @@ div,
 p,
 ul,
 ol {
-  font-family: 'loraregular';
+  font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
   line-height: 1.3;
   font-size: 1rem;
 }

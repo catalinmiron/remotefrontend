@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import NewsletterSignup from '../newsletter-signup'
 
 import styles from './header.module.css'

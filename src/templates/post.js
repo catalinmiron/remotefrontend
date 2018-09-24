@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import striptags from 'striptags'
 
 import Layout from '../components/layout'
 import styles from './post.module.css'
@@ -9,9 +10,7 @@ const Post = ({ data }) => {
   const post = data.wordpressWpJobs
 
   // Strip html from excerpts.
-  const element = document.createElement('div')
-  element.innerHTML = post.excerpt
-  const description = element.textContent || element.innerText
+  const description = striptags(post.excerpt)
 
   return (
     <Layout>

@@ -44,9 +44,6 @@ const Index = ({ data }) => {
               }}
             />
           ))}
-
-        {/* <NewsletterSignup /> */}
-
         <Footer />
       </div>
     </div>

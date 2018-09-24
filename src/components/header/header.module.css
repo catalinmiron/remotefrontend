@@ -8,3 +8,13 @@
 .header {
   padding: 0.5em 0 0;
 }
+
+.header h1 {
+  margin-bottom: 0.25em;
+}
+
+@media (min-width: 992px) {
+  .header {
+    text-align: center;
+  }
+}

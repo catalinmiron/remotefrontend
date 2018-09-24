@@ -1,0 +1,54 @@
+.posting {
+  line-height: calc(1.4em + 1vh);
+  margin-bottom: 1em;
+  position: relative;
+}
+
+h2 {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 992px) {
+  h2 {
+    max-width: 90%;
+  }
+}
+
+
+.at {
+  font-weight: normal;
+  font-family: 'loraitalic';
+  text-transform: lowercase;
+  font-size: 0.64em;
+}
+
+p {
+  font-family: 'loraitalic';
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.apply {
+  font-family: 'open_sans_condensedbold';
+  text-transform: uppercase;
+}
+
+.date {
+  font-size: 1em;
+}
+
+@media (min-width: 992px) {
+  .date {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 0.8em;
+  }
+}
+
+.cta a {
+  margin-right: 1em;
+}

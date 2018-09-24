@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, system-ui, SegoeUI, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: #fffff8;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+
+
+@font-face {
+  font-family: 'lorabold';
+  src: url('fonts/lora-bold-webfont.woff2') format('woff2'),
+       url('fonts/lora-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'lorabold_italic';
+  src: url('fonts/lora-bolditalic-webfont.woff2') format('woff2'),
+       url('fonts/lora-bolditalic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'loraitalic';
+  src: url('fonts/lora-italic-webfont.woff2') format('woff2'),
+       url('fonts/lora-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'loraregular';
+  src: url('fonts/lora-regular-webfont.woff2') format('woff2'),
+       url('fonts/lora-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'open_sans_condensedbold';
+  src: url('fonts/opensanscondensed-bold-webfont.woff2') format('woff2'),
+       url('fonts/opensanscondensed-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'open_sans_condensedlight';
+  src: url('fonts/opensanscondensed-light-webfont.woff2') format('woff2'),
+       url('fonts/opensanscondensed-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'open_sans_condensedLtIt';
+  src: url('fonts/opensanscondensed-lightitalic-webfont.woff2') format('woff2'),
+       url('fonts/opensanscondensed-lightitalic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: 'open_sans_condensedbold';
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+div,
+p,
+ul,
+ol {
+  font-family: 'loraregular';
+  line-height: 1.3;
+  font-size: 1rem;
+}
+
+.container {
+  font-size: calc(.8em + 1vw);
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 50rem;
+}

@@ -1,0 +1,35 @@
+.formContainer {
+  margin-bottom: 1.5em;
+}
+
+.formContainer input,
+.formContainer button {
+  font-family: 'open_sans_condensedbold';
+  border: 0;
+  line-height: 1;
+  padding: 0;
+  -webkit-appearance: none;
+}
+
+.formContainer input {
+  font-size: 1em;
+  padding: 0.25em;
+  border: 1px solid grey;
+  margin-right: 1em;
+}
+
+.formContainer button {
+  font-size: 1em;
+  padding: 0.25em 0.5em;
+  background-color: #00645d;
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid #00645d;
+}
+
+.formContainer > div > div {
+  font-size: 0.8em;
+  color: black !important;
+  font-weight: normal;
+  font-family: 'loraitalic';
+}

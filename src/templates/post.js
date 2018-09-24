@@ -16,7 +16,7 @@ const Post = ({ data }) => {
   const title = `${
     post.title
     // TODO: this should be css.
-  } <span style="font-weight: normal;font-family: 'loraitalic'; text-transform: lowercase; font-size: 0.64em">at</span> ${
+  } <span style="font-weight: normal;font-family: 'Lora', sans-serif; font-style: italic; text-transform: lowercase; font-size: 0.64em">at</span> ${
     post.acf.company
   }`
 

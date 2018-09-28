@@ -11,6 +11,10 @@
   line-height: 1.4;
 }
 
+.content li {
+  margin-bottom: 0.5em;
+}
+
 .content ul,
 .content ol {
   margin-top: 0.5em;

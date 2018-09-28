@@ -16,7 +16,10 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(
       `
         {
-          allWordpressWpJobs {
+          allWordpressWpJobs(
+            sort: { fields: date, order: DESC }
+            filter: { status: { eq: "publish" } }
+          ) {
             edges {
               node {
                 id
@@ -32,7 +35,6 @@ exports.createPages = ({ graphql, actions }) => {
         console.log(result.errors);
         reject(result.errors);
       }
-      console.log({ result: result.data });
       const postTemplate = path.resolve('./src/templates/post.js');
       // We want to create a detailed page for each
       // post node. We'll just use the WordPress Slug for the slug.

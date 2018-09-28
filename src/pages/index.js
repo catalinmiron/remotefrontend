@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
+import moment from 'moment'
 
 import Layout from '../components/layout'
 import PostListing from '../components/post-listing/post-listing'
@@ -38,7 +39,7 @@ const Index = ({ data }) => {
                   path: node.acf.apply_url,
                   company: node.acf.company,
                   snippet: node.excerpt,
-                  date: node.posted,
+                  date: moment(node.posted).fromNow(),
                   slug: node.slug,
                 }}
               />
@@ -60,7 +61,7 @@ export const query = graphql`
           title
           excerpt
           slug
-          posted: date(fromNow: true)
+          posted: date
           date
           acf {
             apply_url

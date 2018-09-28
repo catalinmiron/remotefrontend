@@ -12,7 +12,7 @@ h2 {
 
 @media (min-width: 992px) {
   h2 {
-    max-width: calc(100% - (150px + 1vw));
+    width: calc(100% - 150px);
   }
 }
 

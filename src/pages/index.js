@@ -54,7 +54,7 @@ export default Index
 
 export const query = graphql`
   query JobsQuery {
-    allWordpressWpJobs {
+    allWordpressWpJobs(sort: { fields: date, order: DESC }) {
       edges {
         node {
           id

@@ -8,14 +8,8 @@ h2 {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   line-height: 1.2;
+  font-size: calc(1.5em + 1vw);
 }
-
-@media (min-width: 992px) {
-  h2 {
-    width: calc(100% - 150px);
-  }
-}
-
 
 .at {
   font-weight: normal;
@@ -39,17 +33,25 @@ p {
 }
 
 .date {
-  font-size: .8em;
+  font-size: 1.2em;
+  flex-basis: 150px;
+
 }
 
 @media (min-width: 992px) {
   .date {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    font-size: 0.8em;
+    margin-left: 1em;
+    text-align: right;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
+
+
 
 .cta a {
   margin-right: 1em;

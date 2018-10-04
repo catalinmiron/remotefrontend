@@ -16,8 +16,11 @@ const PostListing = ({ post }) => {
       className={styles.posting}
       key={post.date + post.title}
     >
-      <h2 dangerouslySetInnerHTML={{ __html: title }} />
-      <p className={styles.date}>{post.date}</p>
+      <div className={styles.top}>
+        <h2 dangerouslySetInnerHTML={{ __html: title }} />
+        <p className={styles.date}>{post.date}</p>
+      </div>
+
       {post.snippet && (
         <div className={styles.snippet}>
           <p>{striptags(post.snippet)}</p>

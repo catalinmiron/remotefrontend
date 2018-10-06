@@ -1,3 +1,4 @@
+/* eslint-disable */
 const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
@@ -35,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
         console.log(result.errors);
         reject(result.errors);
       }
-      const postTemplate = path.resolve('./src/templates/post.js');
+      const postTemplate = path.resolve('./src/templates/post/post.js');
       // We want to create a detailed page for each
       // post node. We'll just use the WordPress Slug for the slug.
       // The Post ID is prefixed with 'POST_'

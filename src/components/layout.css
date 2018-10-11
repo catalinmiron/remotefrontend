@@ -17,6 +17,11 @@ html {
   height: 100%;
 }
 
+body {
+  border-top: 5px solid #00645d;
+  border-bottom: 5px solid #00645d;
+}
+
 h1,
 h2,
 h3,

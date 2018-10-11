@@ -1,7 +1,7 @@
-import React from 'react'
-import striptags from 'striptags'
-import styles from './post-listing.module.css'
-import GatsbyLink from 'gatsby-link'
+import React from 'react';
+import striptags from 'striptags';
+import styles from './post-listing.module.css';
+import GatsbyLink from 'gatsby-link';
 
 const PostListing = ({ post }) => {
   const title = `${
@@ -9,7 +9,7 @@ const PostListing = ({ post }) => {
     // TODO: this should be css.
   } <span style="font-weight: normal;font-family: 'Lora', sans-serif; font-style: italic; text-transform: lowercase; font-size: 0.64em">at</span> ${
     post.company
-  }`
+  }`;
   return (
     <article
       aria-label={`${post.title} at ${post.company}`}
@@ -23,7 +23,7 @@ const PostListing = ({ post }) => {
 
       {post.snippet && (
         <div className={styles.snippet}>
-          <p>{striptags(post.snippet)}</p>
+          <p dangerouslySetInnerHTML={{ __html: striptags(post.snippet) }} />
         </div>
       )}
       <div className={styles.cta}>
@@ -33,7 +33,7 @@ const PostListing = ({ post }) => {
         <GatsbyLink to={`/jobs/${post.slug}`}>Full Description</GatsbyLink>
       </div>
     </article>
-  )
-}
+  );
+};
 
-export default PostListing
+export default PostListing;

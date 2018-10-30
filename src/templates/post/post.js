@@ -1,24 +1,25 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
-import striptags from 'striptags'
-import { graphql } from 'gatsby'
+import React from 'react';
+import Link from 'gatsby-link';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import Helmet from 'react-helmet';
+import striptags from 'striptags';
+import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout'
-import styles from './post.module.css'
+import Layout from '../../components/layout';
+import styles from './post.module.css';
 
 const Post = ({ data }) => {
-  const post = data.wordpressWpJobs
+  const post = data.wordpressWpJobs;
 
   // Strip html from excerpts.
-  const description = striptags(post.excerpt)
+  const description = striptags(post.excerpt);
 
   const title = `${
     post.title
     // TODO: this should be css.
   } <span style="font-weight: normal;font-family: 'Lora', sans-serif; font-style: italic; text-transform: lowercase; font-size: 0.64em">at</span> ${
     post.acf.company
-  }`
+  }`;
 
   return (
     <Layout>
@@ -31,21 +32,21 @@ const Post = ({ data }) => {
           className={styles.title}
           dangerouslySetInnerHTML={{ __html: title }}
         />
-        <a href={post.acf.apply_url}>Apply Now</a>
+        <OutboundLink href={post.acf.apply_url}>Apply Now</OutboundLink>
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
         <div className={styles.cta}>
-          <a href={post.acf.apply_url}>Apply Now</a>
+          <OutboundLink href={post.acf.apply_url}>Apply Now</OutboundLink>
           <Link to="/">Back to Listings</Link>
         </div>
       </article>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 
 export const query = graphql`
   query PostsQuery($id: String!) {
@@ -59,4 +60,4 @@ export const query = graphql`
       content
     }
   }
-`
+`;

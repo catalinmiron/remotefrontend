@@ -1,6 +1,7 @@
 import React from 'react';
 import striptags from 'striptags';
 import styles from './post-listing.module.css';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import GatsbyLink from 'gatsby-link';
 
 const PostListing = ({ post }) => {
@@ -27,9 +28,9 @@ const PostListing = ({ post }) => {
         </div>
       )}
       <div className={styles.cta}>
-        <a className={styles.apply} href={post.path}>
+        <OutboundLink className={styles.apply} href={post.path}>
           Apply Now
-        </a>
+        </OutboundLink>
         <GatsbyLink to={`/jobs/${post.slug}`}>Full Description</GatsbyLink>
       </div>
     </article>

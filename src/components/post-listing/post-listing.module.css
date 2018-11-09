@@ -4,7 +4,7 @@
   position: relative;
 }
 
-h2 {
+.posting h2 {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   line-height: 1.2;
@@ -19,7 +19,7 @@ h2 {
   font-size: 0.64em;
 }
 
-p {
+.posting p {
   font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   font-size: 1.2rem;

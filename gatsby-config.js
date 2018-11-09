@@ -6,20 +6,6 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-offline',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Front End Remote Jobs',
-        short_name: 'Front End Remote Jobs',
-        start_url: '/',
-        background_color: '#00645d',
-        theme_color: '#00645d',
-        display: 'minimal-ui',
-        // This path is relative to the root of the site.
-        // icon: 'src/images/gatsby-icon.png',
-      },
-    },
     {
       resolve: 'gatsby-source-wordpress',
       options: {

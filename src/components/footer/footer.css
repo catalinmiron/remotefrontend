@@ -1,6 +1,21 @@
 .footer {
-  justify-content: center;
   align-content: center;
-  padding: 2em 5px;
+  background-color: #00645d;
+  bottom: 0;
+  justify-content: center;
+  left: 0;
+  padding: 1em 5px;
+  position: fixed;
+  right: 0;
   text-align: center;
+}
+
+.footer .strike {
+  text-decoration: line-through;
+}
+
+.footer a {
+  color: white;
+  letter-spacing: 0.025em;
+  font-size: 1.2rem;
 }

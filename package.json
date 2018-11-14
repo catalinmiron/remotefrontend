@@ -1,21 +1,29 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "Front-End-Remote-Jobs",
+  "description": "A job board for fully remote front end jobs.",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ben Robertson <hi@benrobertson.io>",
   "dependencies": {
+    "babel-loader": "^8.0.4",
+    "dotenv": "^6.1.0",
     "gatsby": "^2.0.0",
     "gatsby-plugin-feed": "^2.0.6",
     "gatsby-plugin-google-analytics": "^2.0.6",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-stripe-checkout": "^1.0.7",
     "gatsby-source-wordpress": "^3.0.1",
+    "netlify-lambda": "^1.0.3",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-mailchimp-subscribe": "^2.0.2",
-    "striptags": "^3.1.1"
+    "stripe": "^6.13.0",
+    "striptags": "^3.1.1",
+    "uuid": "^3.3.2",
+    "webpack": "^4.25.1",
+    "webpack-dev-server": "^3.1.10"
   },
   "keywords": [
     "gatsby"
@@ -23,9 +31,12 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "start": "gatsby develop",
     "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lambda-serve": "netlify-lambda serve lambda-src",
+    "lambda-build": "NODE_ENV=production webpack && netlify-lambda build lambda-src",
+    "lambda-dev": "NODE_ENV=development concurrently \"webpack-dev-server --content-base src/\" \"yarn run lambda-serve\""
   },
   "devDependencies": {
     "prettier": "^1.14.2"

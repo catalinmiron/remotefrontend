@@ -1,15 +1,16 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
-import moment from 'moment'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import moment from 'moment';
 
-import Layout from '../components/layout'
-import PostListing from '../components/post-listing/post-listing'
+import Layout from '../components/layout';
+import PostListing from '../components/post-listing/post-listing';
+import Checkout from '../components/checkout/checkout';
 
-import styles from './index.module.css'
+import styles from './index.module.css';
 
 const Index = ({ data }) => {
-  const jobs = data.allWordpressWpJobs.edges
+  const jobs = data.allWordpressWpJobs.edges;
   return (
     <Layout>
       <div className="index-container">
@@ -23,13 +24,14 @@ const Index = ({ data }) => {
           ]}
         />
         <div className={styles.container}>
+          <Checkout lambdaEndpoint={data.site.siteMetadata.lambdaEndpoint} />
           {jobs
             .filter(({ node }) => {
               const thirtyDaysAgo = new Date(
                 new Date().setDate(new Date().getDate() - 30)
-              )
+              );
               // Only show dates from 30 days ago and up.
-              return new Date(node.date) > thirtyDaysAgo
+              return new Date(node.date) > thirtyDaysAgo;
             })
             .map(({ node }) => (
               <PostListing
@@ -47,13 +49,18 @@ const Index = ({ data }) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 export const query = graphql`
   query JobsQuery {
+    site {
+      siteMetadata {
+        lambdaEndpoint
+      }
+    }
     allWordpressWpJobs(sort: { fields: date, order: DESC }) {
       edges {
         node {
@@ -71,4 +78,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

@@ -1,10 +1,14 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: 'Front End Remote Jobs',
     siteUrl: 'https://frontendremotejobs.com',
     description: 'Fully remote jobs for front end developers.',
+    lambdaEndpoint: process.env.LAMBDA_ENDPOINT,
   },
   plugins: [
+    'gatsby-plugin-stripe-checkout',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-wordpress',

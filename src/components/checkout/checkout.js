@@ -32,9 +32,9 @@ const Checkout = class extends React.Component {
     event.preventDefault();
     this.setState({ disabled: true, buttonText: 'Loading...' });
     this.stripeHandler.open({
-      name: 'FE Remote Jobs: Premium',
+      name: 'FE Remote Job Alerts',
       amount: amount,
-      description: 'Instant alerts for new remote FE jobs.',
+      description: 'Subscription for instant job alerts',
       zipCode: true,
       token: token => {
         fetch(lambdaEndpoint, {

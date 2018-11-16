@@ -16,7 +16,7 @@ The Gatsby front end for [Front End Remote Jobs](https://frontendremotejobs.com)
  1. Clone the repo.
  1. `nvm use`
  1. `npm install`
- 1. `npm start`
+ 1. `npm start` to run Gatsby locally,  `npm run lambda-serve` to run the lambda server locally (for Stripe).
 
 ## Deployment
 Pushing to the `develop` branch automatically deploys to netlify.

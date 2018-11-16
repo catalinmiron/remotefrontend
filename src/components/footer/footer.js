@@ -1,12 +1,26 @@
 import React from 'react';
 import './footer.css';
 
-const Footer = () => (
-  <footer className="footer">
-    <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
-      Post a Job: $15 / month!
-    </a>
-  </footer>
-);
+class Footer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const { location } = this.props;
+
+    this.state = {
+      sticky: location.pathname === '/',
+    };
+  }
+
+  render() {
+    return (
+      <footer className={this.state.sticky ? 'footer sticky' : 'footer'}>
+        <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
+          Post a Job: $15 / month!
+        </a>
+      </footer>
+    );
+  }
+}
 
 export default Footer;

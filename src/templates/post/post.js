@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import Helmet from 'react-helmet';
 import striptags from 'striptags';
@@ -8,7 +8,7 @@ import { graphql } from 'gatsby';
 import Layout from '../../components/layout';
 import styles from './post.module.css';
 
-const Post = ({ data }) => {
+const Post = ({ data, location }) => {
   const post = data.wordpressWpJobs;
 
   // Strip html from excerpts.
@@ -22,7 +22,7 @@ const Post = ({ data }) => {
   }`;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Helmet
         title={`${post.title} at ${post.acf.company}`}
         meta={[{ name: 'description', description }]}

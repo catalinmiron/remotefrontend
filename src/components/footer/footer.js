@@ -8,7 +8,7 @@ class Footer extends React.Component {
     const { location } = this.props;
 
     this.state = {
-      sticky: location.pathname === '/',
+      sticky: location && location.pathname === '/',
     };
   }
 

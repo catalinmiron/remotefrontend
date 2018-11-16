@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
@@ -7,14 +7,14 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import styles from './post/post.module.css';
 
-const Page = ({ data }) => {
+const Page = ({ data, location }) => {
   const post = data.wordpressPage;
 
   // Strip html from excerpts.
   const description = striptags(post.excerpt);
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Helmet
         title={`${post.title} | Front End Remote Jobs`}
         meta={[{ name: 'description', description }]}

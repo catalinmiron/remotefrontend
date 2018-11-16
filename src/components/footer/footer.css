@@ -1,13 +1,16 @@
 .footer {
   align-content: center;
   background-color: #00645d;
-  bottom: 0;
   justify-content: center;
-  left: 0;
   padding: 1em 5px;
+  text-align: center;
+}
+
+.footer.sticky {
+  bottom: 0;
+  left: 0;
   position: fixed;
   right: 0;
-  text-align: center;
 }
 
 .footer .strike {

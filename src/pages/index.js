@@ -9,10 +9,10 @@ import Checkout from '../components/checkout/checkout';
 
 import styles from './index.module.css';
 
-const Index = ({ data }) => {
+const Index = ({ data, location }) => {
   const jobs = data.allWordpressWpJobs.edges;
   return (
-    <Layout>
+    <Layout location={location}>
       <div className="index-container">
         <Helmet
           title={'Front End Remote Jobs'}

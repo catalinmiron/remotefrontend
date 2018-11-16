@@ -1,4 +1,5 @@
 require('dotenv').config();
+const proxy = require('http-proxy-middleware');
 
 module.exports = {
   siteMetadata: {
@@ -6,6 +7,17 @@ module.exports = {
     siteUrl: 'https://frontendremotejobs.com',
     description: 'Fully remote jobs for front end developers.',
     lambdaEndpoint: process.env.LAMBDA_ENDPOINT,
+  },
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    );
   },
   plugins: [
     'gatsby-plugin-stripe-checkout',

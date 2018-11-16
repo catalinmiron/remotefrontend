@@ -2,31 +2,33 @@ require('dotenv').config();
 // https://macarthur.me/posts/building-a-lambda-function-with-netlify/
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const statusCode = 200;
 // Change to only allow requests from frontendremotejobs.com
 const headers = {
-  'Access-Control-Allow-Origin': `${process.env.HOME}`,
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
 exports.handler = function(event, context, callback) {
+  'use strict';
+
+  // If it's not a POST or there is no body, abort.
   if (event.httpMethod !== 'POST' || !event.body) {
     callback(null, {
-      statusCode,
+      statusCode: 403,
       headers,
-      body: 'Let there be light!',
+      body: 'Access denied.',
     });
+
+    return;
   }
 
-  //-- Parse the body contents into an object.
+  // Parse the body contents into an object.
   const data = JSON.parse(event.body);
 
-  //-- Make sure we have all required data. Otherwise, escape.
+  // Make sure we have all required data. Otherwise, escape.
   if (!data.token || !data.amount || !data.idempotency_key) {
-    console.error('Required information is missing.');
-
     callback(null, {
-      statusCode,
+      statusCode: 422,
       headers,
       body: JSON.stringify({ status: 'missing-information' }),
     });
@@ -34,11 +36,32 @@ exports.handler = function(event, context, callback) {
     return;
   }
 
+  let status;
+  let statusCode = 200;
+
   (async function() {
-    const customer = await stripe.customers.create({
-      source: data.token.id,
-      email: data.token.email,
-    });
+    // Create a new customer.
+    const customer = await stripe.customers.create(
+      {
+        source: data.token.id,
+        email: data.token.email,
+      },
+      err => {
+        console.log({ err });
+        if (err !== null) {
+          statusCode = (err && err.statusCode) || 422;
+          status = err.message;
+        }
+
+        callback(null, {
+          statusCode,
+          headers,
+          body: JSON.stringify({ status }),
+        });
+
+        return;
+      }
+    );
 
     // Create a subscription
     const subscription = await stripe.subscriptions.create(
@@ -46,20 +69,21 @@ exports.handler = function(event, context, callback) {
         customer: customer.id,
         items: [
           {
-            // plan: 'plan_DyA0E5U97oTCZS', // test plan
-            plan: 'plan_Dy9tOuHFJugE6f',
+            plan: 'plan_DyA0E5U97oTCZS', // test plan
+            // plan: 'plan_Dy9tOuHFJugE6f',
           },
         ],
       },
       (err, subscription) => {
         if (err !== null) {
-          statusCode = 400;
+          statusCode = (err && err.statusCode) || 422;
+          status = err.message;
+        } else {
+          status =
+            subscription === null || subscription.status !== 'active'
+              ? 'failed'
+              : subscription.status;
         }
-
-        let status =
-          subscription === null || subscription.status !== 'active'
-            ? 'failed'
-            : subscription.status;
 
         callback(null, {
           statusCode,
@@ -68,5 +92,7 @@ exports.handler = function(event, context, callback) {
         });
       }
     );
+
+    return;
   })();
 };

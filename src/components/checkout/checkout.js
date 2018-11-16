@@ -51,6 +51,7 @@ const Checkout = class extends React.Component {
         })
           .then(res => {
             console.log('Transaction processed successfully');
+            console.log(res);
             this.resetButton();
             this.setState({ paymentMessage: 'Payment Successful!' });
             return res;

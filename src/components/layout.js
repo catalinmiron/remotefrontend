@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 
-import Header from './header/header'
-import './layout.css'
-import Footer from './footer/footer'
+import Header from './header/header';
+import './layout.css';
+import Footer from './footer/footer';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -29,18 +29,18 @@ const Layout = ({ children }) => (
             },
           ]}
         >
-          <html lang="en" />
+          <html lang="en-US" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className="container">{children}</div>
-        <Footer />
+        <Footer location={location} />
       </>
     )}
   />
-)
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

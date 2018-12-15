@@ -2,8 +2,9 @@
   "name": "front-end-remote-jobs",
   "description": "A job board for fully remote front end jobs.",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ben Robertson <hi@benrobertson.io>",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "gatsby": "^2.0.0",
     "gatsby-plugin-feed": "^2.0.6",
     "gatsby-plugin-google-analytics": "^2.0.6",
@@ -23,7 +24,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "start": "gatsby develop",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

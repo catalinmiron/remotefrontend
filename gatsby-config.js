@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: '.env',
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Front End Remote Jobs',
@@ -9,10 +13,16 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'dev-front-end-remote-jobs.pantheonsite.io',
+        baseUrl: 'live-front-end-remote-jobs.pantheonsite.io',
         protocol: 'http',
         hostingWPCOM: false,
         useACF: true,
+        auth: {
+          // If auth.user and auth.pass are filled, then the source plugin will be allowed
+          // to access endpoints that are protected with .htaccess.
+          htaccess_user: process.env.auth_user,
+          htaccess_pass: process.env.auth_pw,
+        },
         // Set verboseOutput to true to display a verbose output on
         // `npm run develop` or `npm run build`
         // It can help you debug specific API Endpoints problems.

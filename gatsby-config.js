@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'live-front-end-remote-jobs.pantheonsite.io',
+        baseUrl: process.env.SRC_URL,
         protocol: 'http',
         hostingWPCOM: false,
         useACF: true,

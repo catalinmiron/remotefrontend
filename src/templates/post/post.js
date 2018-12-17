@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
 import styles from './post.module.css';
 
 const Post = ({ data, location }) => {
@@ -22,7 +21,7 @@ const Post = ({ data, location }) => {
   }`;
 
   return (
-    <Layout location={location}>
+    <>
       <Helmet
         title={`${post.title} at ${post.acf.company}`}
         meta={[{ name: 'description', description }]}
@@ -42,7 +41,7 @@ const Post = ({ data, location }) => {
           <Link to="/">Back to Listings</Link>
         </div>
       </article>
-    </Layout>
+    </>
   );
 };
 

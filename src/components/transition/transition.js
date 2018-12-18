@@ -18,7 +18,7 @@ const PageTransition = ({ children, location }) => (
   <>
     <div>
       <PoseGroup>
-        <Transition key={location.pathname}>{children}</Transition>
+        <Transition key={location ? location.pathname : '' }>{children}</Transition>
       </PoseGroup>
     </div>
   </>

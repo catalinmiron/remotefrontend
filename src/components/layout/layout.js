@@ -8,7 +8,7 @@ import './layout.css';
 import Footer from '../footer/footer';
 import PageTransition from '../transition/transition';
 
-const Layout = ({ children, ...props }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -33,9 +33,9 @@ const Layout = ({ children, ...props }) => (
           <html lang="en-US" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <PageTransition location={props.location}>
+        <PageTransition location={location}>
           <div className="container">{children}</div>
-          <Footer location={props.location} />
+          <Footer location={location} />
         </PageTransition>
       </>
     )}

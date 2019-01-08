@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout/layout';
 import styles from './post/post.module.css';
 
 const Page = ({ data, location }) => {
@@ -14,7 +13,7 @@ const Page = ({ data, location }) => {
   const description = striptags(post.excerpt);
 
   return (
-    <Layout location={location}>
+    <>
       <Helmet
         title={`${post.title} | Front End Remote Jobs`}
         meta={[{ name: 'description', description }]}
@@ -32,7 +31,7 @@ const Page = ({ data, location }) => {
           <Link to="/">Back to Listings</Link>
         </div>
       </article>
-    </Layout>
+    </>
   );
 };
 

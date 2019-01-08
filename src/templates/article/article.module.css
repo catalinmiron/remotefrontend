@@ -1,0 +1,82 @@
+.content blockquote {
+  background: #eee;
+  border-left: 5px solid #00645d;
+  font-size: 1em;
+  margin-bottom: 3em;
+  margin-right: 1em;
+  margin-top: 2em;
+  margin-left: 1em;
+  padding: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+@media (min-width: 700px) {
+  .content blockquote {
+    margin-left: 2em;
+  }
+}
+
+.grid h1 {
+  font-size: 2.5rem;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-top: 2em;
+}
+
+.content h3 {
+  font-size: 1.5rem;
+  margin-top: 2em;
+}
+
+.content {
+  max-width: 70ch;
+}
+
+.content blockquote p {
+  line-height: 1.5;
+}
+
+.content p {
+  line-height: 1.5;
+}
+
+.content > p:first-of-type {
+  font-size: 1.7em;
+}
+
+
+
+.content p {
+  font-size: 1.2em;
+}
+
+.content a {
+  text-transform: none;
+  font-family: inherit;
+  font-weight: normal;
+}
+
+.sidebar {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 45rem 1fr;
+    grid-gap: 2rem;
+  }
+
+  .sidebar {
+    margin: 0;
+  }
+}
+
+.featured {
+  position: sticky;
+  top: 10em;
+}

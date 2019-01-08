@@ -26,7 +26,7 @@ const Post = ({ data, location }) => {
         title={`${post.title} at ${post.acf.company}`}
         meta={[{ name: 'description', description }]}
       />
-      <article>
+      <article className={styles.wrapper}>
         <h1
           className={styles.title}
           dangerouslySetInnerHTML={{ __html: title }}

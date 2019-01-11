@@ -6,8 +6,8 @@
   "dependencies": {
     "babel-loader": "^8.0.4",
     "concurrently": "^4.0.1",
-    "dotenv": "^6.1.0",
-    "gatsby": "^2.0.0",
+    "dotenv": "^6.2.0",
+    "gatsby": "^2.0.68",
     "gatsby-plugin-feed": "^2.0.6",
     "gatsby-plugin-google-analytics": "^2.0.6",
     "gatsby-plugin-manifest": "^2.0.2",
@@ -20,21 +20,23 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-mailchimp-subscribe": "^2.0.2",
+    "react-pose": "^4.0.4",
     "stripe": "^6.13.0",
     "striptags": "^3.1.1",
     "uuid": "^3.3.2",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.14"
   },
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production gatsby build && netlify-lambda build lambda-src",
     "develop": "gatsby develop",
-    "start": "NODE_ENV=development concurrently \"npm run lambda-serve\" \"gatsby develop\" ",
     "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lambda-serve": "netlify-lambda serve lambda-src"
+    "lambda-serve": "netlify-lambda serve lambda-src",
+    "serve": "gatsby serve",
+    "start": "NODE_ENV=development concurrently \"npm run lambda-serve\" \"gatsby develop\" ",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "prettier": "^1.14.2"

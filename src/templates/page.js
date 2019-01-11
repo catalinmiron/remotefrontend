@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
+import Layout from '../components/layout/layout';
 import styles from './post/post.module.css';
 
 const Page = ({ data, location }) => {

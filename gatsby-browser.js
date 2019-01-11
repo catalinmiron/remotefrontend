@@ -1,7 +1,27 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from 'react';
+import Layout from './src/components/layout/layout';
 
-// You can delete this file if you're not using it
+export const wrapPageElement = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>;
+};
+
+const transitionDelay = 250;
+
+export const shouldUpdateScroll = ({
+  routerProps: { location },
+  getSavedScrollPosition,
+}) => {
+  if (location.action === 'PUSH') {
+    window.setTimeout(
+      () => window.scrollTo({ top: 0, left: 0 }),
+      transitionDelay
+    );
+  } else {
+    const savedPosition = getSavedScrollPosition(location);
+    window.setTimeout(
+      () => window.scrollTo(...(savedPosition || [0, 0])),
+      transitionDelay
+    );
+  }
+  return false;
+};

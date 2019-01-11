@@ -1,4 +1,4 @@
-require('dotenv').config();
+/* eslint-disable strict */
 require('dotenv').config({
   path: '.env',
 });
@@ -34,8 +34,8 @@ module.exports = {
         hostingWPCOM: false,
         useACF: true,
         auth: {
-          // If auth.user and auth.pass are filled, then the source plugin will be allowed
-          // to access endpoints that are protected with .htaccess.
+          // If auth.user and auth.pass are filled, then the source plugin will
+          // be allowed to access endpoints that are protected with .htaccess.
           htaccess_user: process.env.auth_user,
           htaccess_pass: process.env.auth_pw,
         },
@@ -49,8 +49,8 @@ module.exports = {
         concurrentRequests: 10,
         // Exclude specific routes using glob parameters
         // See: https://github.com/isaacs/minimatch
-        // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
-        // all routes that begin with `yoast` from fetch.
+        // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending
+        // in `comments` and all routes that begin with `yoast` from fetch.
         excludedRoutes: ['/*/*/comments', '/yoast/**', '/*/*/users'],
       },
     },

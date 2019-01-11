@@ -13,7 +13,7 @@ const Checkout = class extends React.Component {
   };
 
   resetButton() {
-    this.setState({ disabled: false, buttonText: 'Sign me up!' });
+    this.setState({ disabled: true, buttonText: 'Payment complete' });
   }
 
   componentDidMount() {

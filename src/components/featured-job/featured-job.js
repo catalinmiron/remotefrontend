@@ -27,7 +27,7 @@ const FeaturedJob = ({ post }) => {
         </div>
       )}
       <div>
-        <Link to={`/jobs/${post.slug}`}>Apply Now</Link>
+        <Link to={`/jobs/${post.slug}`}>View Job</Link>
       </div>
     </div>
   );

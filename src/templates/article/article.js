@@ -70,7 +70,10 @@ export const query = graphql`
         name
       }
     }
-    featuredJob: allWordpressWpJobs(limit: 1) {
+    featuredJob: allWordpressWpJobs(
+      sort: { fields: date, order: DESC }
+      limit: 1
+    ) {
       edges {
         node {
           id

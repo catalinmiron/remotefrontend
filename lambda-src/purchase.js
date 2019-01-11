@@ -41,27 +41,10 @@ exports.handler = function(event, context, callback) {
 
   (async function() {
     // Create a new customer.
-    const customer = await stripe.customers.create(
-      {
-        source: data.token.id,
-        email: data.token.email,
-      },
-      err => {
-        console.log({ err });
-        if (err !== null) {
-          statusCode = (err && err.statusCode) || 422;
-          status = err.message;
-        }
-
-        callback(null, {
-          statusCode,
-          headers,
-          body: JSON.stringify({ status }),
-        });
-
-        return;
-      }
-    );
+    const customer = await stripe.customers.create({
+      source: data.token.id,
+      email: data.token.email,
+    });
 
     // Create a subscription
     const subscription = await stripe.subscriptions.create(

@@ -13,7 +13,7 @@ const Checkout = class extends React.Component {
   };
 
   resetButton() {
-    this.setState({ disabled: true, buttonText: 'Payment complete' });
+    this.setState({ disabled: false, buttonText: 'Sign me up!' });
   }
 
   componentDidMount() {
@@ -52,13 +52,29 @@ const Checkout = class extends React.Component {
           .then(res => {
             console.log('Transaction processed successfully');
             console.log(res);
-            this.resetButton();
-            this.setState({ paymentMessage: 'Payment Successful!' });
+
+            if (res.status === 200) {
+              this.setState({
+                paymentMessage:
+                  '🙌 Thanks for signing up! Go check your ✉️ email for more details',
+              });
+            } else {
+              this.resetButton();
+              this.setState({
+                paymentMessage:
+                  'Uh oh, something went wrong 😬. Please try again, or send an email to hi@frontendremotejobs.com for support.',
+              });
+            }
+
             return res;
           })
           .catch(error => {
             console.error('Error:', error);
-            this.setState({ paymentMessage: 'Payment Failed' });
+            this.resetButton();
+            this.setState({
+              paymentMessage:
+                'Uh oh, something went wrong. Please try again, or send an email to hi@frontendremotejobs.com for support.',
+            });
           });
       },
     });
@@ -82,7 +98,7 @@ const Checkout = class extends React.Component {
         >
           {this.state.buttonText}
         </button>
-        {this.state.paymentMessage}
+        <p>{this.state.paymentMessage}</p>
       </div>
     );
   }

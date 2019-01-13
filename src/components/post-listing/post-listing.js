@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import striptags from 'striptags';
-import styles from './post-listing.module.css';
+import styles from './post-listing.module.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { Link } from 'gatsby';
 
@@ -36,5 +37,7 @@ const PostListing = ({ post }) => {
     </article>
   );
 };
+
+PostListing.propTypes = {};
 
 export default PostListing;

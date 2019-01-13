@@ -6,7 +6,7 @@ import { graphql } from 'gatsby';
 import FeaturedJob from '../../components/featured-job/featured-job';
 import moment from 'moment';
 
-import styles from './article.module.css';
+import styles from './article.module.scss';
 
 const Article = ({ data, location }) => {
   const post = data.wordpressPost;

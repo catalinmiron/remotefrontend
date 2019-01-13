@@ -1,7 +1,7 @@
 import React from 'react';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
-import styles from './newsletter-signup.module.css';
+import styles from './newsletter-signup.module.scss';
 
 const NewsletterSignup = () => (
   <div className={styles.formContainer}>

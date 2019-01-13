@@ -1,8 +1,9 @@
 import React from 'react';
-import NewsletterSignup from '../newsletter-signup';
+import NewsletterSignup from '../newsletter-signup/newsletter-signup';
 import { Link } from 'gatsby';
 
-import styles from './header.module.css';
+import styles from './header.module.scss';
+import Nav from '../nav/nav';
 
 const Header = () => (
   <header className={styles.header}>
@@ -13,6 +14,7 @@ const Header = () => (
         </Link>
       </h1>
       <NewsletterSignup />
+      <Nav />
     </div>
   </header>
 );

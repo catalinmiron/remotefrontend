@@ -1,11 +1,14 @@
+@import '../../utilities/init';
+
 .container {
   font-size: calc(.8em + 1vw);
   padding: 1em;
-  max-width: 70ch;
+  max-width: 70rem;
   margin: 0 auto;
 }
 
 .header {
+  @include font-primary;
   padding: 0.5em 0 0;
 }
 
@@ -16,6 +19,7 @@
 }
 
 .header h1 {
+  @include font-secondary;
   margin-bottom: 0.25em;
 }
 

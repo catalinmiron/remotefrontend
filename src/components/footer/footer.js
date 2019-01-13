@@ -1,5 +1,5 @@
 import React from 'react';
-import './footer.css';
+import styles from './footer.module.scss';
 
 class Footer extends React.Component {
   constructor(props) {
@@ -14,11 +14,13 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <footer className={this.state.sticky ? 'footer sticky' : 'footer'}>
-        <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
-          Post a Job: $15 / month!
-        </a>
-      </footer>
+      <div className={this.state.sticky ? styles.sticky : ''}>
+        <footer className={styles.footer}>
+          <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
+            Post a Job: $15 / month!
+          </a>
+        </footer>
+      </div>
     );
   }
 }

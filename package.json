@@ -28,10 +28,15 @@
     "serve": "gatsby serve",
     "start": "gatsby develop",
     "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "devDependencies": {
-    "prettier": "^1.14.2"
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
+    "prettier": "^1.14.2",
+    "webpack-merge": "^4.2.1"
   },
   "repository": {
     "type": "git",

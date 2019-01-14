@@ -45,3 +45,7 @@
 .cta a {
   margin-right: 1em;
 }
+
+.wrapper {
+  max-width: 50rem;
+}

@@ -19,7 +19,7 @@ const PageTransition = ({ children, location }) => (
   <>
     <div>
       <PoseGroup>
-        <Transition key={(location && location.pathname) || uuid()}>
+        <Transition key={location ? location.pathname : uuid()}>
           {children}
         </Transition>
       </PoseGroup>

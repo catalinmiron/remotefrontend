@@ -1,10 +1,15 @@
+@import '../../utilities/init';
+
 .posting {
   line-height: calc(1.4em + 1vh);
+  margin: 0 auto;
+  max-width: 50rem;
   margin-bottom: 2em;
   position: relative;
 }
 
 .posting h2 {
+  @include font-secondary;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   line-height: 1.2;
@@ -12,15 +17,15 @@
 }
 
 .at {
+  @include font-primary;
   font-weight: normal;
-  font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   text-transform: lowercase;
   font-size: 0.64em;
 }
 
 .posting p {
-  font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
+  @include font-primary;
   font-style: italic;
   font-size: 1.2rem;
   margin: 0;
@@ -28,7 +33,7 @@
 }
 
 .apply {
-  font-family: 'Open Sans Condensed', -apple-system, system-ui, SegoeUI, Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  @include font-secondary;
   text-transform: uppercase;
 }
 
@@ -55,6 +60,7 @@
 
 
 .cta a {
+  @include font-secondary;
   margin-right: 1em;
 }
 

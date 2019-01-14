@@ -38,6 +38,12 @@ const PostListing = ({ post }) => {
   );
 };
 
-PostListing.propTypes = {};
+PostListing.propTypes = {
+  title: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+};
 
 export default PostListing;

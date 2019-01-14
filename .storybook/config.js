@@ -1,7 +1,12 @@
 import { configure } from '@storybook/react';
+import requireContext from 'require-context.macro';
+
+// Load global styles.
+import '../src/utilities/fonts/_fonts.scss';
+import '../src/global.scss';
 
 // automatically import all files ending in *.stories.js
-const req = require.context('../src', true, /.stories.js$/);
+const req = requireContext('../src', true, /.stories.js$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }

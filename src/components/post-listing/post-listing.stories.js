@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import '../layout/layout.css';
 import PostListing from './post-listing';
 
 storiesOf(`PostListing`, module).add(`default`, () => (

@@ -34,14 +34,12 @@ const Index = ({ data, location }) => {
           .map(({ node }) => (
             <PostListing
               key={node.id}
-              post={{
-                title: node.title,
-                path: node.acf.apply_url,
-                company: node.acf.company,
-                snippet: node.excerpt,
-                date: moment(node.posted).fromNow(),
-                slug: node.slug,
-              }}
+              title={node.title}
+              path={node.acf.apply_url}
+              company={node.acf.company}
+              snippet={node.excerpt}
+              date={moment(node.posted).fromNow()}
+              slug={node.slug}
             />
           ))}
       </div>

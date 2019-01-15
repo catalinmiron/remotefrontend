@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 
-import styles from './post.module.css';
+import styles from './post.module.scss';
+import CallToAction from '../../components/call-to-action/call-to-action';
 
 const Post = ({ data, location }) => {
   const post = data.wordpressWpJobs;
@@ -31,15 +31,17 @@ const Post = ({ data, location }) => {
           className={styles.title}
           dangerouslySetInnerHTML={{ __html: title }}
         />
-        <OutboundLink href={post.acf.apply_url}>Apply Now</OutboundLink>
+        <OutboundLink className={styles.apply} href={post.acf.apply_url}>
+          Apply Now
+        </OutboundLink>
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
         <div className={styles.cta}>
-          <OutboundLink href={post.acf.apply_url}>Apply Now</OutboundLink>
-          <Link to="/">Back to Listings</Link>
+          <OutboundLink href={post.acf.apply_url}>Apply Now =></OutboundLink>
         </div>
+        <CallToAction />
       </article>
     </>
   );

@@ -4,9 +4,9 @@ import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 import FeaturedJob from '../../components/featured-job/featured-job';
-import moment from 'moment';
 
 import styles from './article.module.scss';
+import CallToAction from '../../components/call-to-action/call-to-action';
 
 const Article = ({ data, location }) => {
   const post = data.wordpressPost;
@@ -27,7 +27,7 @@ const Article = ({ data, location }) => {
             className={styles.title}
             dangerouslySetInnerHTML={{ __html: post.title }}
           />
-          <p>
+          <p className={styles.meta}>
             Published <i>{post.date}</i> by <b>{post.author.name}</b>
           </p>
           <div
@@ -43,15 +43,12 @@ const Article = ({ data, location }) => {
                 path: featuredJob.acf.apply_url,
                 company: featuredJob.acf.company,
                 snippet: featuredJob.excerpt,
-                date: moment(featuredJob.posted).fromNow(),
                 slug: featuredJob.slug,
               }}
             />
           </div>
         </aside>
-        <div className={styles.cta}>
-          <Link to="/">Back to Listings</Link>
-        </div>
+        <CallToAction />
       </article>
     </>
   );
@@ -65,7 +62,7 @@ export const query = graphql`
       title
       excerpt
       content
-      date(fromNow: true)
+      date(formatString: "MMMM D, Y")
       author {
         name
       }

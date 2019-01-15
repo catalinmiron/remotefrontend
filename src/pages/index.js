@@ -5,12 +5,10 @@ import moment from 'moment';
 
 import PostListing from '../components/post-listing/post-listing';
 
-import styles from './index.module.css';
-
 const Index = ({ data, location }) => {
   const jobs = data.allWordpressWpJobs.edges;
   return (
-    <div className="index-container">
+    <div>
       <Helmet
         title={'Front End Remote Jobs'}
         meta={[
@@ -20,7 +18,7 @@ const Index = ({ data, location }) => {
           },
         ]}
       />
-      <div className={styles.container}>
+      <div>
         {jobs
           .filter(({ node }) => {
             const thirtyDaysAgo = new Date(

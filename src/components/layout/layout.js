@@ -4,9 +4,12 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 import Header from '../header/header';
-import './layout.css';
 import Footer from '../footer/footer';
 import PageTransition from '../transition/transition';
+
+import '../../utilities/fonts/_fonts.scss';
+import '../../global.scss';
+import styles from './layout.module.scss';
 
 const Layout = ({ children, location }) => (
   <StaticQuery
@@ -34,7 +37,7 @@ const Layout = ({ children, location }) => (
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <PageTransition location={location}>
-          <div className="container">{children}</div>
+          <div className={styles.container}>{children}</div>
           <Footer location={location} />
         </PageTransition>
       </>

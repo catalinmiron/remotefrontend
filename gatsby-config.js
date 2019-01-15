@@ -10,10 +10,11 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'live-front-end-remote-jobs.pantheonsite.io',
+        baseUrl: process.env.SRC_URL,
         protocol: 'http',
         hostingWPCOM: false,
         useACF: true,
@@ -35,7 +36,7 @@ module.exports = {
         // See: https://github.com/isaacs/minimatch
         // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
         // all routes that begin with `yoast` from fetch.
-        excludedRoutes: ['/*/*/comments', '/yoast/**', '/*/*/users'],
+        excludedRoutes: ['/*/*/comments', '/yoast/**'],
       },
     },
     {

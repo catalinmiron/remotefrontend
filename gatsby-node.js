@@ -100,6 +100,57 @@ exports.createPages = ({ graphql, actions }) => {
             });
           });
         });
+      })
+      .then(() => {
+        // ==== PAGES (WORDPRESS NATIVE) ====
+        graphql(
+          `
+            {
+              allWordpressPost(
+                sort: { fields: date, order: DESC }
+                filter: { status: { eq: "publish" } }
+              ) {
+                edges {
+                  node {
+                    id
+                    slug
+                    status
+                    template
+                  }
+                }
+              }
+            }
+          `
+        ).then(result => {
+          if (result.errors) {
+            console.log(result.errors);
+            reject(result.errors);
+          }
+
+          // Create Page pages.
+          const pageTemplate = path.resolve(
+            './src/templates/article/article.js'
+          );
+          // We want to create a detailed page for each
+          // page node. We'll just use the WordPress Slug for the slug.
+          // The Page ID is prefixed with 'PAGE_'
+          _.each(result.data.allWordpressPost.edges, edge => {
+            // Gatsby uses Redux to manage its internal state.
+            // Plugins and sites can use functions like "createPage"
+            // to interact with Gatsby.
+            createPage({
+              // Each page is required to have a `path` as well
+              // as a template component. The `context` is
+              // optional but is often necessary so the template
+              // can query data specific to each page.
+              path: `/articles/${edge.node.slug}/`,
+              component: slash(pageTemplate),
+              context: {
+                id: edge.node.id,
+              },
+            });
+          });
+        });
       });
   });
   // ==== END POSTS ====

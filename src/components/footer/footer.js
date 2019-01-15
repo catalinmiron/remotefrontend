@@ -1,26 +1,22 @@
 import React from 'react';
-import './footer.css';
+import { Link } from '@reach/router';
+import Nav from '../nav/nav';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-class Footer extends React.Component {
-  constructor(props) {
-    super(props);
+import styles from './footer.module.scss';
 
-    const { location } = this.props;
-
-    this.state = {
-      sticky: location && location.pathname === '/',
-    };
-  }
-
-  render() {
-    return (
-      <footer className={this.state.sticky ? 'footer sticky' : 'footer'}>
-        <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
-          Post a Job: $15 / month!
-        </a>
-      </footer>
-    );
-  }
-}
+const Footer = () => (
+  <footer className={styles.footer} aria-label="Footer">
+    <Nav />
+    <p>
+      <Link to="/">Front end remote jobs</Link> is a curated job board featuring
+      the best remote jobs for front end developers.
+    </p>
+    <p>
+      Made with ❤ by{' '}
+      <OutboundLink href="https://benrobertson.io">Ben Robertson</OutboundLink>
+    </p>
+  </footer>
+);
 
 export default Footer;

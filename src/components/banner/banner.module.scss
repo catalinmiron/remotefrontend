@@ -1,0 +1,27 @@
+@import '../../utilities/init';
+
+.footer {
+  align-content: center;
+  background-color: #00645d;
+  justify-content: center;
+  padding: 1em 5px;
+  text-align: center;
+}
+
+.sticky {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+}
+
+.footer .strike {
+  text-decoration: line-through;
+}
+
+.footer a {
+  @include font-secondary;
+  color: white;
+  letter-spacing: 0.025em;
+  font-size: 1.2rem;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 require('dotenv').config({
   path: '.env',
 });
@@ -106,7 +107,53 @@ module.exports = {
                 }
               }
             `,
-            output: '/rss.xml',
+            output: '/jobs.xml',
+            title: 'Job Listings at Front End Remote Jobs',
+          },
+          {
+            serialize: ({ query: { site, allWordpressPost } }) => {
+              return allWordpressPost.edges.map(edge => {
+                return Object.assign({}, edge.node, {
+                  title: `${edge.node.title}`,
+                  description: edge.node.excerpt,
+                  url: `${site.siteMetadata.siteUrl}/articles/${
+                    edge.node.slug
+                  }`,
+                  guid: edge.node.id,
+                  date: edge.node.date,
+                  custom_elements: [{ 'content:encoded': edge.node.content }],
+                });
+              });
+            },
+            query: `
+            {
+              allWordpressPost(
+                sort: { fields: date, order: DESC }
+                filter: { status: { eq: "publish" } }
+              ) {
+                edges {
+                  node {
+                    id
+                    excerpt
+                    content
+                    date(formatString: "MMMM DD, YYYY hh:mm a")
+                    title
+                    slug
+                  }
+                }
+              }
+              site {
+                siteMetadata {
+                  title
+                  description
+                  siteUrl
+                  site_url: siteUrl
+                }
+              }
+            }
+            `,
+            output: '/articles.xml',
+            title: 'Articles at Front End Remote Jobs',
           },
         ],
       },

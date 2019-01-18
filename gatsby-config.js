@@ -107,8 +107,8 @@ module.exports = {
                 }
               }
             `,
-            title: 'Job Listings at Front End Remote Jobs',
             output: '/jobs.xml',
+            title: 'Job Listings at Front End Remote Jobs',
           },
           {
             serialize: ({ query: { site, allWordpressPost } }) => {
@@ -144,13 +144,16 @@ module.exports = {
               }
               site {
                 siteMetadata {
+                  title
+                  description
                   siteUrl
+                  site_url: siteUrl
                 }
               }
             }
             `,
-            title: 'Articles at Front End Remote Jobs',
             output: '/articles.xml',
+            title: 'Articles at Front End Remote Jobs',
           },
         ],
       },

@@ -1,17 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import striptags from 'striptags';
 import styles from './post-listing.module.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { Link } from 'gatsby';
 
+const title = (title, company) => (
+  <h2>
+    {title} <span className={styles.at}>at</span> {company}
+  </h2>
+);
+
 const PostListing = ({ post }) => {
-  const title = `${
-    post.title
-    // TODO: this should be css.
-  } <span style="font-weight: normal;font-family: 'Lora', sans-serif; font-style: italic; text-transform: lowercase; font-size: 0.64em">at</span> ${
-    post.company
-  }`;
   return (
     <article
       aria-label={`${post.title} at ${post.company}`}
@@ -19,7 +18,7 @@ const PostListing = ({ post }) => {
       key={post.date + post.title}
     >
       <div className={styles.top}>
-        <h2 dangerouslySetInnerHTML={{ __html: title }} />
+        {title(post.title, post.company)}
         <p className={styles.date}>{post.date}</p>
       </div>
 

@@ -75,7 +75,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allWordpressWpJobs } }) => {
-              return allWordpressWpJobs.edges.map(edge => {
+              return allWordpressWpJobs.edges.map((edge) => {
                 return Object.assign({}, edge.node, {
                   title: `${edge.node.title} at ${edge.node.acf.company}`,
                   description: edge.node.excerpt,
@@ -113,7 +113,7 @@ module.exports = {
           },
           {
             serialize: ({ query: { site, allWordpressPost } }) => {
-              return allWordpressPost.edges.map(edge => {
+              return allWordpressPost.edges.map((edge) => {
                 return Object.assign({}, edge.node, {
                   title: `${edge.node.title}`,
                   description: edge.node.excerpt,

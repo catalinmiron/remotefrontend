@@ -159,5 +159,20 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Front End Remote Jobs',
+        short_name: 'Front End Jobs',
+        start_url: '/?utm_source=home-screen',
+        background_color: '#fffff8',
+        theme_color: '#00645d',
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: 'standalone',
+        icon: 'src/images/hammer-wrench.png', // This path is relative to the root of the site.
+        include_favicon: true, // Include favicon
+      },
+    },
   ],
 };

@@ -163,7 +163,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Front End Remote Jobs',
-        short_name: 'Front End Jobs',
+        short_name: 'FE Jobs',
         start_url: '/?utm_source=home-screen',
         background_color: '#fffff8',
         theme_color: '#00645d',
@@ -174,5 +174,6 @@ module.exports = {
         include_favicon: true, // Include favicon
       },
     },
+    'gatsby-plugin-offline',
   ],
 };

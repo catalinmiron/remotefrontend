@@ -1,3 +1,5 @@
+@import '../../utilities/init';
+
 .footer {
   align-content: center;
   background-color: #00645d;
@@ -6,7 +8,7 @@
   text-align: center;
 }
 
-.footer.sticky {
+.sticky {
   bottom: 0;
   left: 0;
   position: fixed;
@@ -18,6 +20,7 @@
 }
 
 .footer a {
+  @include font-secondary;
   color: white;
   letter-spacing: 0.025em;
   font-size: 1.2rem;

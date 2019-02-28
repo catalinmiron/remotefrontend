@@ -5,17 +5,21 @@
   "author": "Ben Robertson <hi@benrobertson.io>",
   "dependencies": {
     "dotenv": "^6.2.0",
-    "gatsby": "^2.0.0",
+    "gatsby": "^2.0.68",
+    "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-feed": "^2.0.6",
     "gatsby-plugin-google-analytics": "^2.0.6",
-    "gatsby-plugin-manifest": "^2.0.2",
-    "gatsby-plugin-offline": "^2.0.5",
+    "gatsby-plugin-manifest": "^2.0.17",
+    "gatsby-plugin-offline": "^2.0.22",
     "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-sass": "^2.0.7",
     "gatsby-source-wordpress": "^3.0.1",
+    "node-sass": "^4.11.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-mailchimp-subscribe": "^2.0.2",
+    "react-pose": "^4.0.4",
     "striptags": "^3.1.1"
   },
   "keywords": [
@@ -24,12 +28,23 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "prod": "gatsby build && gatsby serve",
+    "serve": "gatsby serve",
     "start": "gatsby develop",
     "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:lighthouse": "start-server-and-test serve http://localhost:9000 test"
   },
   "devDependencies": {
-    "prettier": "^1.14.2"
+    "chrome-launcher": "^0.10.5",
+    "cli-table": "^0.3.1",
+    "eslint": "^5.12.1",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.0.0",
+    "lighthouse": "^4.1.0",
+    "prettier": "^1.14.2",
+    "start-server-and-test": "^1.7.11"
   },
   "repository": {
     "type": "git",

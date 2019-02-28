@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import striptags from 'striptags';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import styles from './post/post.module.css';
+import styles from './page.module.scss';
+import CallToAction from '../components/call-to-action/call-to-action';
 
 const Page = ({ data, location }) => {
   const post = data.wordpressPage;
@@ -14,25 +13,25 @@ const Page = ({ data, location }) => {
   const description = striptags(post.excerpt);
 
   return (
-    <Layout location={location}>
+    <>
       <Helmet
         title={`${post.title} | Front End Remote Jobs`}
         meta={[{ name: 'description', description }]}
       />
-      <article>
-        <h1
-          className={styles.title}
-          dangerouslySetInnerHTML={{ __html: post.title }}
-        />
-        <div
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-        <div className={styles.cta}>
-          <Link to="/">Back to Listings</Link>
+      <article className={styles.container}>
+        <div className={styles.content}>
+          <h1
+            className={styles.title}
+            dangerouslySetInnerHTML={{ __html: post.title }}
+          />
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
+        <CallToAction />
       </article>
-    </Layout>
+    </>
   );
 };
 

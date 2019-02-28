@@ -1,0 +1,20 @@
+@import '../../utilities/init';
+
+body {
+  border-top: 5px solid $blue-stone;
+  border-bottom: 5px solid $blue-stone;
+}
+
+
+.container {
+  font-size: calc(.8em + 1vw);
+  padding: 1em 2em;
+  margin: 0 auto 3em;
+  max-width: 66rem;
+  min-height: 80vh;
+
+  @media (min-width: 992px) {
+    padding: 1em;
+    padding-left: 2em;
+  }
+}

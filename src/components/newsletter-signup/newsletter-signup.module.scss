@@ -1,10 +1,12 @@
+@import '../../utilities/init';
+
 .formContainer {
   margin-bottom: 1.5em;
 }
 
 .formContainer input,
 .formContainer button {
-  font-family: 'Open Sans Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  @include font-secondary;
   font-weight: bold;
   border: 0;
   line-height: 1;
@@ -22,10 +24,10 @@
 .formContainer button {
   font-size: 1em;
   padding: 0.25em 0.5em;
-  background-color: #00645d;
+  background-color: $blue-stone;
   color: white;
   text-transform: uppercase;
-  border: 1px solid #00645d;
+  border: 1px solid $blue-stone;
 }
 
 .formContainer > div > div {

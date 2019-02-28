@@ -1,0 +1,19 @@
+@import '../../utilities/init';
+
+.footer {
+  max-width: 40rem;
+  margin: 0 auto 2em;
+  text-align: center;
+
+  p {
+    margin-top: 1.75em;
+  }
+
+  a {
+    @include font-secondary;
+  }
+}
+
+.nav {
+  font-size: 0.8em;
+}

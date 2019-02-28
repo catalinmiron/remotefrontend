@@ -3,6 +3,7 @@ import striptags from 'striptags';
 import styles from './post-listing.module.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { Link } from 'gatsby';
+import classname from 'classnames';
 
 const title = (title, company) => (
   <h2>
@@ -14,12 +15,21 @@ const PostListing = ({ post }) => {
   return (
     <article
       aria-label={`${post.title} at ${post.company}`}
-      className={styles.posting}
+      className={classname({
+        [styles.posting]: true,
+        [styles.featuredPost]: post.featured
+      })}
       key={post.date + post.title}
     >
       <div className={styles.top}>
         {title(post.title, post.company)}
-        <p className={styles.date}>{post.date}</p>
+        {post.featured ? (
+          <Link to={`/jobs/${post.slug}`} className={styles.featured}>
+            Featured Job!
+          </Link>
+        ) : (
+          <p className={styles.date}>{post.date}</p>
+        )}
       </div>
 
       {post.snippet && (

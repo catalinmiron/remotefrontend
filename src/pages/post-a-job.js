@@ -1,17 +1,20 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql, Link } from 'gatsby';
 import classnames from 'classnames';
+import PostListing from '../components/post-listing/post-listing';
 
 import styles from './post-a-job.module.scss';
+import moment from 'moment';
+import JobListing from '../components/job-listing/job-listing';
 
 class PostAJob extends React.Component {
   constructor() {
     super();
     this.state = {
       cost: 25,
+      preview: false,
       form: {
-        jobTitle: '',
+        title: '',
         company: '',
         url: '',
         teaser: '',
@@ -25,6 +28,13 @@ class PostAJob extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handlePromotionChange = this.handlePromotionChange.bind(this);
+    this.togglePreview = this.togglePreview.bind(this);
+  }
+
+  togglePreview() {
+    this.setState(({ preview: prevPreview }) => ({
+      preview: !prevPreview
+    }));
   }
 
   handleChange(e) {
@@ -53,7 +63,18 @@ class PostAJob extends React.Component {
     }));
   }
 
+  canDisplayPreview() {
+    const {
+      form: { title, company, teaser, content }
+    } = this.state;
+
+    if (title && company && teaser && content) return true;
+
+    return false;
+  }
+
   render() {
+    const { preview, form } = this.state;
     return (
       <>
         <Helmet
@@ -91,15 +112,15 @@ class PostAJob extends React.Component {
               <legend>🛠 Job Information </legend>
               <div className={styles.titleSection}>
                 <div>
-                  <label className={styles.label} htmlFor="jobTitle">
+                  <label className={styles.label} htmlFor="title">
                     Job Title
                   </label>
                   <input
                     className={styles.input}
                     onChange={this.handleChange}
                     type="text"
-                    name="jobTitle"
-                    id="jobTitle"
+                    name="title"
+                    id="title"
                     required
                   />
                 </div>
@@ -240,10 +261,58 @@ class PostAJob extends React.Component {
                 </div>
               </div>
             </fieldset>
-            <button className={styles.submit} type="submit">
-              Pay ${this.state.cost} and Submit!
-            </button>
+            <div className={styles.actions}>
+              <button className={styles.submit} type="submit">
+                Pay ${this.state.cost} and Submit!
+              </button>
+              {this.canDisplayPreview() && (
+                <button
+                  className={styles.textButton}
+                  onClick={this.togglePreview}
+                  type="button"
+                >
+                  {preview ? 'Close preview' : 'Preview Listing'}
+                </button>
+              )}
+            </div>
           </form>
+          {preview && (
+            <div className={styles.preview}>
+              <h2>Homepage preview: </h2>
+              <br />
+              <PostListing
+                post={{
+                  title: form.title,
+                  path: form.url,
+                  company: form.company,
+                  snippet: form.teaser,
+                  date: moment().fromNow(),
+                  slug: '#',
+                  featured: form.featured
+                }}
+              />
+              <hr />
+              <br />
+              <h2>Job Listing Preview: </h2>
+              <br />
+              <JobListing
+                title={form.title}
+                excerpt={form.teaser}
+                content={form.content}
+                company={form.company}
+                url={form.url}
+              />
+              <br />
+              <hr />
+              <br />
+              <button
+                className={styles.textButton}
+                onClick={this.togglePreview}
+              >
+                {preview ? 'Close preview' : 'Preview Listing'}
+              </button>
+            </div>
+          )}
         </div>
       </>
     );

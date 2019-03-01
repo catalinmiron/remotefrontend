@@ -96,3 +96,23 @@
     background-color: rgba(lightblue, 0.4);
   }
 }
+
+.preview {
+  margin: 3rem 0;
+}
+
+.actions {
+  button:first-of-type {
+    margin-right: 2rem;
+  }
+}
+
+.textButton {
+  @include font-secondary;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 0;
+  font-size: 1rem;
+  cursor: pointer;
+}

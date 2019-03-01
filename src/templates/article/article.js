@@ -7,51 +7,83 @@ import FeaturedJob from '../../components/featured-job/featured-job';
 import styles from './article.module.scss';
 import CallToAction from '../../components/call-to-action/call-to-action';
 
-const Article = ({ data, location }) => {
-  const post = data.wordpressPost;
-  const featuredJob = data.featuredJob.edges[0].node;
+class Article extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      featuredJob: false
+    };
+  }
 
-  // Strip html from excerpts.
-  const description = striptags(post.excerpt);
+  componentDidMount() {
+    this.getRandomFeaturedJob();
+  }
 
-  return (
-    <>
-      <Helmet
-        title={`${post.title} | Front End Remote Jobs`}
-        meta={[{ name: 'description', description }]}
-      />
-      <article className={styles.grid}>
-        <div>
-          <h1
-            className={styles.title}
-            dangerouslySetInnerHTML={{ __html: post.title }}
-          />
-          <p className={styles.meta}>
-            Published <i>{post.date}</i> by <b>{post.author.name}</b>
-          </p>
-          <div
-            className={styles.content}
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </div>
-        <aside className={styles.sidebar}>
-          <div className={styles.featured}>
-            <FeaturedJob
-              post={{
-                title: featuredJob.title,
-                path: featuredJob.acf.apply_url,
-                company: featuredJob.acf.company,
-                snippet: featuredJob.excerpt,
-                slug: featuredJob.slug,
-              }}
+  getRandomFeaturedJob() {
+    const featuredJobs = this.props.data.featuredJob.edges.filter(
+      ({ node }) => node.acf.featured && node.acf.featured[0]
+    );
+
+    const random = Math.floor(Math.random() * (featuredJobs.length - 1));
+
+    let featuredJob = this.props.data.featuredJob.edges[0].node;
+    if (featuredJobs.length > 0) {
+      featuredJob =
+        featuredJobs && featuredJobs[random] && featuredJobs[random].node;
+    }
+
+    this.setState({
+      featuredJob
+    });
+  }
+
+  render() {
+    const post = this.props.data.wordpressPost;
+    // Strip html from excerpts.
+    const description = striptags(post.excerpt);
+    const { featuredJob } = this.state;
+
+    return (
+      <>
+        <Helmet
+          title={`${post.title} | Front End Remote Jobs`}
+          meta={[{ name: 'description', description }]}
+        />
+        <article className={styles.grid}>
+          <div>
+            <h1
+              className={styles.title}
+              dangerouslySetInnerHTML={{ __html: post.title }}
+            />
+            <p className={styles.meta}>
+              Published <i>{post.date}</i> by <b>{post.author.name}</b>
+            </p>
+            <div
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
-        </aside>
-        <CallToAction />
-      </article>
-    </>
-  );
-};
+          <aside className={styles.sidebar}>
+            <div className={styles.featured}>
+              {featuredJob && (
+                <FeaturedJob
+                  post={{
+                    title: featuredJob.title,
+                    path: featuredJob.acf.apply_url,
+                    company: featuredJob.acf.company,
+                    snippet: featuredJob.excerpt,
+                    slug: featuredJob.slug
+                  }}
+                />
+              )}
+            </div>
+          </aside>
+          <CallToAction />
+        </article>
+      </>
+    );
+  }
+}
 
 export default Article;
 
@@ -68,7 +100,7 @@ export const query = graphql`
     }
     featuredJob: allWordpressWpJobs(
       sort: { fields: date, order: DESC }
-      limit: 1
+      filter: { status: { eq: "publish" } }
     ) {
       edges {
         node {
@@ -76,11 +108,13 @@ export const query = graphql`
           title
           excerpt
           slug
+          status
           posted: date
           date
           acf {
             apply_url
             company
+            featured: featured_job
           }
         }
       }

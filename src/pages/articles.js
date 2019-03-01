@@ -13,14 +13,14 @@ const Blog = ({ data }) => {
         meta={[
           {
             name: 'description',
-            description: 'Fully remote jobs for front end developers.',
-          },
+            description: 'Fully remote jobs for front end developers.'
+          }
         ]}
       />
       <div className={styles.container}>
         <div>
           {articles.map(({ node }) => (
-            <article className={styles.article}>
+            <article key={node.title} className={styles.article}>
               <h2 className={styles.title}>{node.title}</h2>
               <p className={styles.date}>{node.date}</p>
               <div

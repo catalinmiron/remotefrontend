@@ -1,0 +1,98 @@
+@import '../utilities/init';
+
+.container {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.postJobForm {
+  legend {
+    font-size: 1.75rem;
+  }
+
+  legend,
+  label {
+    @include font-secondary;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  li {
+    @include font-primary;
+    line-height: 1.5;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    @include font-primary;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    border: 1px solid lightgrey;
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-grow: 1;
+
+  @media screen and (min-width: 767px) {
+    > div {
+      flex-basis: 47.5%;
+    }
+  }
+}
+
+.helpText {
+  @include font-primary;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.fieldset {
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.submit {
+  @include font-secondary;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: $blue-stone;
+  padding: 0.5rem 0.75rem;
+  color: white;
+  border: 0;
+  transform: rotate(-2deg);
+  font-size: 1.5rem;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, .2);
+  cursor: pointer;
+}
+
+.promotionCheckboxGroup {
+  padding: 1rem;
+  background-color: rgba(lightblue, 0.1);
+  transition: 150ms background;
+
+  &:hover {
+    background-color: rgba(lightblue, 0.25);
+  }
+
+  &:focus-within {
+    background-color: rgba(lightblue, 0.25);
+  }
+
+  &.promotionSelected {
+    background-color: rgba(lightblue, 0.4);
+  }
+}

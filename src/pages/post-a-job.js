@@ -7,6 +7,7 @@ import styles from './post-a-job.module.scss';
 import moment from 'moment';
 import JobListing from '../components/job-listing/job-listing';
 import Checkout from '../components/checkout/checkout';
+import Editor from '../components/editor/editor';
 
 class PostAJob extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class PostAJob extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
     this.handlePromotionChange = this.handlePromotionChange.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
     this.checkFormValidity = this.checkFormValidity.bind(this);
@@ -69,7 +71,6 @@ class PostAJob extends React.Component {
 
   checkFormValidity() {
     const isValid = this.form.current.checkValidity();
-    console.log(isValid);
     return isValid;
   }
 
@@ -81,6 +82,15 @@ class PostAJob extends React.Component {
     if (title && company && teaser && content) return true;
 
     return false;
+  }
+
+  handleContentChange(value) {
+    this.setState((prevState) => ({
+      form: {
+        ...prevState.form,
+        content: value
+      }
+    }));
   }
 
   render() {
@@ -207,6 +217,10 @@ class PostAJob extends React.Component {
                   name="content"
                   id="content"
                   rows="20"
+                />
+                <Editor
+                  handleChange={this.handleContentChange}
+                  value={this.state.form.content}
                 />
               </div>
             </fieldset>

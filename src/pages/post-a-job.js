@@ -211,13 +211,6 @@ class PostAJob extends React.Component {
                   The main content of your listing. Be sure to include any
                   specific instructions on how to apply.
                 </span>
-                <textarea
-                  onChange={this.handleChange}
-                  required
-                  name="content"
-                  id="content"
-                  rows="20"
-                />
                 <Editor
                   handleChange={this.handleContentChange}
                   value={this.state.form.content}
@@ -289,6 +282,7 @@ class PostAJob extends React.Component {
               <Checkout
                 isValid={this.checkFormValidity}
                 form={this.form}
+                formValues={this.state.form}
                 amount={this.state.cost * 100}
                 buttonText={`Pay $${this.state.cost} and Submit`}
               />

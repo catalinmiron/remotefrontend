@@ -22,6 +22,7 @@ exports.handler = function(event, context, callback) {
 
   // Parse the body contents into an object.
   const data = JSON.parse(event.body);
+  const form = data.form;
 
   // Make sure we have all required data. Otherwise, escape.
   if (!data.token || !data.amount || !data.idempotency_key) {
@@ -46,7 +47,6 @@ exports.handler = function(event, context, callback) {
         receipt_email: data.email
       },
       (err, charge) => {
-        console.log(err);
         if (err !== null) {
           statusCode = (err && err.statusCode) || 422;
           status = err.message;
@@ -65,6 +65,39 @@ exports.handler = function(event, context, callback) {
         });
       }
     );
+
+    const site = await require('wpapi')
+      .discover(`http://${process.env.SRC_URL}`)
+      .then((site) =>
+        site.auth({
+          username: process.env.auth_user,
+          password: process.env.auth_pw
+        })
+      )
+      .then((site) => {
+        // TODO: Check if post exists before creating a new one.
+        site
+          .jobs()
+          .create({
+            title: form.title,
+            content: form.content,
+            excerpt: form.teaser,
+            fields: {
+              apply_url: form.url,
+              company: form.company,
+              featured: form.featured
+            }
+          })
+          .then((response) => {
+            console.log(response && response.id);
+          })
+          .catch((err) => {
+            console.log({ err });
+          });
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
 
     return;
   })();

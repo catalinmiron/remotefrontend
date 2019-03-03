@@ -99,7 +99,7 @@ export default class Checkout extends Component {
             amount: this.props.amount,
             idempotency_key: uuid(),
             email: token.email,
-            form: this.getFormValues()
+            form: this.props.formValues
           }),
           headers: new Headers({
             'Content-Type': 'application/json'

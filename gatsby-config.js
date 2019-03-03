@@ -11,16 +11,17 @@ module.exports = {
     siteUrl: 'https://frontendremotejobs.com',
     description: 'Fully remote jobs for front end developers.'
   },
-  developMiddleware: app => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       proxy({
         target: 'http://localhost:9000',
         pathRewrite: {
-          '/.netlify/functions/': '',
-        },
+          '/.netlify/functions/': ''
+        }
       })
     );
+  },
   plugins: [
     'gatsby-plugin-stripe-checkout',
     'gatsby-plugin-react-helmet',

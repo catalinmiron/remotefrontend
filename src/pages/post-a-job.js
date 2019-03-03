@@ -6,6 +6,7 @@ import PostListing from '../components/post-listing/post-listing';
 import styles from './post-a-job.module.scss';
 import moment from 'moment';
 import JobListing from '../components/job-listing/job-listing';
+import Checkout from '../components/checkout/checkout';
 
 class PostAJob extends React.Component {
   constructor() {
@@ -29,6 +30,9 @@ class PostAJob extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handlePromotionChange = this.handlePromotionChange.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
+    this.checkFormValidity = this.checkFormValidity.bind(this);
+
+    this.form = React.createRef();
   }
 
   togglePreview() {
@@ -61,6 +65,12 @@ class PostAJob extends React.Component {
       },
       cost: prevCost + priceChange
     }));
+  }
+
+  checkFormValidity() {
+    const isValid = this.form.current.checkValidity();
+    console.log(isValid);
+    return isValid;
   }
 
   canDisplayPreview() {
@@ -107,7 +117,7 @@ class PostAJob extends React.Component {
             To get started, fill out the form below, preview your listing, and
             submit! Most job listings are live within 24 hours.
           </p>
-          <form action="" className={styles.postJobForm}>
+          <form ref={this.form} className={styles.postJobForm}>
             <fieldset className={styles.fieldset}>
               <legend>🛠 Job Information </legend>
               <div className={styles.titleSection}>
@@ -262,9 +272,12 @@ class PostAJob extends React.Component {
               </div>
             </fieldset>
             <div className={styles.actions}>
-              <button className={styles.submit} type="submit">
-                Pay ${this.state.cost} and Submit!
-              </button>
+              <Checkout
+                isValid={this.checkFormValidity}
+                form={this.form}
+                amount={this.state.cost * 100}
+                buttonText={`Pay $${this.state.cost} and Submit`}
+              />
               {this.canDisplayPreview() && (
                 <button
                   className={styles.textButton}

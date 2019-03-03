@@ -1,4 +1,5 @@
 require('dotenv').config();
+const insane = require('insane');
 // https://macarthur.me/posts/building-a-lambda-function-with-netlify/
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -80,7 +81,7 @@ exports.handler = function(event, context, callback) {
           .jobs()
           .create({
             title: form.title,
-            content: form.content,
+            content: insane(form.content),
             excerpt: form.teaser,
             fields: {
               apply_url: form.url,

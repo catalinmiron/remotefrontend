@@ -16,6 +16,7 @@
     "gatsby-plugin-sass": "^2.0.7",
     "gatsby-plugin-stripe-checkout": "^1.1.2",
     "gatsby-source-wordpress": "^3.0.1",
+    "insane": "^2.6.2",
     "netlify-lambda": "^1.4.2",
     "node-sass": "^4.11.0",
     "react": "^16.5.1",

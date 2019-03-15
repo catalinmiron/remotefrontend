@@ -4,4 +4,4 @@
   base = "/"
   publish = "public"
   command = "yarn run build"
-  functions = "lambda"
+  functions = "lambda/"

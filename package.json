@@ -38,7 +38,7 @@
     "prod": "gatsby build && gatsby serve",
     "serve": "gatsby serve",
     "format": "prettier --write '**/*.js'",
-    "build": "gatsby build && netlify-lambda build lambda-src",
+    "build": "gatsby build",
     "lambda-serve": "netlify-lambda -c ./webpack.functions.js serve lambda-src",
     "start": "NODE_ENV=development concurrently \"npm run lambda-serve\" \"gatsby develop\" ",
     "start:gatsby": "gatsby develop",

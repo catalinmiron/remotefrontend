@@ -1,8 +1,7 @@
 # netlify.toml
 
 [build]
-  base = "/"
   publish = "public"
-  command = "yarn run build"
-  functions = "lambda/"
+  command = "npm run build"
+  functions = "lambda"
   NODE_ENV = "production"

@@ -9,7 +9,9 @@ module.exports = {
   siteMetadata: {
     title: 'Front End Remote Jobs',
     siteUrl: 'https://frontendremotejobs.com',
-    description: 'Fully remote jobs for front end developers.'
+    description: 'Fully remote jobs for front end developers.',
+    purchaseEndpoint: process.env.JOB_FORM_ENDPOINT,
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY
   },
   developMiddleware: (app) => {
     app.use(

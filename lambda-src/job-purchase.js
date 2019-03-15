@@ -5,7 +5,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Change to only allow requests from frontendremotejobs.com
 const headers = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': process.env.HOME,
   'Access-Control-Allow-Headers': 'Content-Type'
 };
 
@@ -86,7 +86,7 @@ exports.handler = function(event, context, callback) {
             fields: {
               apply_url: form.url,
               company: form.company,
-              featured: form.featured
+              featured: form.featured // this isn't working
             }
           })
           .then((response) => {

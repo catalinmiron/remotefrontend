@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import PostListing from '../components/post-listing/post-listing';
+import { graphql } from 'gatsby';
 
 import styles from './post-a-job.module.scss';
 import moment from 'moment';
@@ -95,6 +96,7 @@ class PostAJob extends React.Component {
 
   render() {
     const { preview, form } = this.state;
+    const { data } = this.props;
     return (
       <>
         <Helmet
@@ -127,7 +129,7 @@ class PostAJob extends React.Component {
             To get started, fill out the form below, preview your listing, and
             submit! Most job listings are live within 24 hours.
           </p>
-          <form ref={this.form} className={styles.postJobForm}>
+          <form ref={this.form} className={styles.postJobForm} method="POST">
             <fieldset className={styles.fieldset}>
               <legend>🛠 Job Information </legend>
               <div className={styles.titleSection}>
@@ -285,6 +287,7 @@ class PostAJob extends React.Component {
                 formValues={this.state.form}
                 amount={this.state.cost * 100}
                 buttonText={`Pay $${this.state.cost} and Submit`}
+                data={data}
               />
               {this.canDisplayPreview() && (
                 <button
@@ -341,3 +344,14 @@ class PostAJob extends React.Component {
 }
 
 export default PostAJob;
+
+export const query = graphql`
+  query PostJobQuery {
+    site {
+      siteMetadata {
+        purchaseEndpoint
+        stripePublishableKey
+      }
+    }
+  }
+`;

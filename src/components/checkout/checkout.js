@@ -22,10 +22,11 @@ export default class Checkout extends Component {
     this.setState({
       buttonText: this.props.buttonText
     });
+
     this.stripeHandler = window.StripeCheckout.configure({
       // You’ll need to add your own Stripe public key to the `checkout.js` file.
       // key: 'pk_test_STRIPE_PUBLISHABLE_KEY',
-      key: 'pk_test_okjVYrTDsEVOKIlfdR3RhS1Z',
+      key: this.props.data.site.siteMetadata.stripePublishableKey,
       closed: () => {
         this.setState({
           loading: false,
@@ -64,6 +65,7 @@ export default class Checkout extends Component {
   }
 
   handleCheckoutClick(e) {
+    e.preventDefault();
     if (this.props.isValid()) {
       this.validateForm();
       this.setState({
@@ -82,7 +84,6 @@ export default class Checkout extends Component {
   }
 
   openStripeCheckout(event) {
-    // const { lambdaEndpoint } = this.props;
     this.setState({ loading: true, buttonText: 'Loading...' });
     this.stripeHandler.open({
       name: 'Front End Remote Jobs',
@@ -90,8 +91,7 @@ export default class Checkout extends Component {
       description: 'Job listing',
       zipCode: true,
       token: (token) => {
-        console.log({ token });
-        fetch('/.netlify/functions/job-purchase.js', {
+        fetch(this.props.data.site.siteMetadata.purchaseEndpoint, {
           method: 'POST',
           mode: 'no-cors',
           body: JSON.stringify({

@@ -219,7 +219,7 @@ class PostAJob extends React.Component {
                 />
               </div>
             </fieldset>
-            <fieldset className={styles.fieldset}>
+            {/* <fieldset className={styles.fieldset}>
               <legend>👋 Your contact info</legend>
               <div className={styles.titleSection}>
                 <div>
@@ -249,7 +249,7 @@ class PostAJob extends React.Component {
                   />
                 </div>
               </div>
-            </fieldset>
+            </fieldset> */}
             <fieldset className={styles.fieldset}>
               <legend> 📣 Promotion</legend>
               <div

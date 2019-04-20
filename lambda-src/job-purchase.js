@@ -52,6 +52,7 @@ exports.handler = function(event, context, callback) {
           statusCode = (err && err.statusCode) || 422;
           status = err.message;
         }
+        console.log({ charge });
         else {
           status =
             charge === null || charge.status !== 'active'

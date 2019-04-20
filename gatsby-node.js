@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `
     )
-      .then(result => {
+      .then((result) => {
         if (result.errors) {
           console.log(result.errors);
           reject(result.errors);
@@ -41,13 +41,13 @@ exports.createPages = ({ graphql, actions }) => {
         // We want to create a detailed page for each
         // post node. We'll just use the WordPress Slug for the slug.
         // The Post ID is prefixed with 'POST_'
-        _.each(result.data.allWordpressWpJobs.edges, edge => {
+        _.each(result.data.allWordpressWpJobs.edges, (edge) => {
           createPage({
             path: `/jobs/${edge.node.slug}`,
             component: slash(postTemplate),
             context: {
-              id: edge.node.id,
-            },
+              id: edge.node.id
+            }
           });
         });
         resolve();
@@ -72,7 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           `
-        ).then(result => {
+        ).then((result) => {
           if (result.errors) {
             console.log(result.errors);
             reject(result.errors);
@@ -83,7 +83,7 @@ exports.createPages = ({ graphql, actions }) => {
           // We want to create a detailed page for each
           // page node. We'll just use the WordPress Slug for the slug.
           // The Page ID is prefixed with 'PAGE_'
-          _.each(result.data.allWordpressPage.edges, edge => {
+          _.each(result.data.allWordpressPage.edges, (edge) => {
             // Gatsby uses Redux to manage its internal state.
             // Plugins and sites can use functions like "createPage"
             // to interact with Gatsby.
@@ -95,8 +95,8 @@ exports.createPages = ({ graphql, actions }) => {
               path: `/${edge.node.slug}/`,
               component: slash(pageTemplate),
               context: {
-                id: edge.node.id,
-              },
+                id: edge.node.id
+              }
             });
           });
         });
@@ -121,7 +121,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           `
-        ).then(result => {
+        ).then((result) => {
           if (result.errors) {
             console.log(result.errors);
             reject(result.errors);
@@ -134,7 +134,7 @@ exports.createPages = ({ graphql, actions }) => {
           // We want to create a detailed page for each
           // page node. We'll just use the WordPress Slug for the slug.
           // The Page ID is prefixed with 'PAGE_'
-          _.each(result.data.allWordpressPost.edges, edge => {
+          _.each(result.data.allWordpressPost.edges, (edge) => {
             // Gatsby uses Redux to manage its internal state.
             // Plugins and sites can use functions like "createPage"
             // to interact with Gatsby.
@@ -146,12 +146,27 @@ exports.createPages = ({ graphql, actions }) => {
               path: `/articles/${edge.node.slug}/`,
               component: slash(pageTemplate),
               context: {
-                id: edge.node.id,
-              },
+                id: edge.node.id
+              }
             });
           });
         });
       });
   });
   // ==== END POSTS ====
+};
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-quill/,
+            use: loaders.null()
+          }
+        ]
+      }
+    });
+  }
 };

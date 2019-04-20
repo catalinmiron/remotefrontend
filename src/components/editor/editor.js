@@ -33,13 +33,15 @@ export default class Editor extends React.Component {
   render() {
     return (
       <div className="text-editor">
-        <ReactQuill
-          ref={this.editor}
-          modules={modules}
-          formats={formats}
-          defaultValue={this.props.value}
-          onChange={(value) => this.props.handleChange(value)}
-        />
+        {typeof document !== 'undefined' && (
+          <ReactQuill
+            ref={this.editor}
+            modules={modules}
+            formats={formats}
+            defaultValue={this.props.value}
+            onChange={(value) => this.props.handleChange(value)}
+          />
+        )}
       </div>
     );
   }

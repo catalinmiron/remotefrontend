@@ -193,7 +193,7 @@ class PostAJob extends React.Component {
                   rows="2"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className={styles.label} htmlFor="salary">
                   Salary Info
                 </label>
@@ -204,7 +204,7 @@ class PostAJob extends React.Component {
                   name="salary"
                   id="salary"
                 />
-              </div>
+              </div> */}
               <div>
                 <label className={styles.label} htmlFor="content">
                   Content

@@ -1,15 +1,31 @@
 /* eslint-disable strict */
 require('dotenv').config({
-  path: '.env',
+  path: '.env'
 });
+
+const proxy = require('http-proxy-middleware');
 
 module.exports = {
   siteMetadata: {
     title: 'Front End Remote Jobs',
     siteUrl: 'https://frontendremotejobs.com',
     description: 'Fully remote jobs for front end developers.',
+    purchaseEndpoint: process.env.JOB_FORM_ENDPOINT,
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+  },
+  developMiddleware: (app) => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': ''
+        }
+      })
+    );
   },
   plugins: [
+    'gatsby-plugin-stripe-checkout',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     'gatsby-plugin-catch-links',
@@ -24,7 +40,7 @@ module.exports = {
           // If auth.user and auth.pass are filled, then the source plugin will be allowed
           // to access endpoints that are protected with .htaccess.
           htaccess_user: process.env.auth_user,
-          htaccess_pass: process.env.auth_pw,
+          htaccess_pass: process.env.auth_pw
         },
         // Set verboseOutput to true to display a verbose output on
         // `npm run develop` or `npm run build`
@@ -38,8 +54,8 @@ module.exports = {
         // See: https://github.com/isaacs/minimatch
         // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
         // all routes that begin with `yoast` from fetch.
-        excludedRoutes: ['/*/*/comments', '/yoast/**'],
-      },
+        excludedRoutes: ['/*/*/comments', '/yoast/**']
+      }
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
@@ -50,12 +66,12 @@ module.exports = {
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
-        respectDNT: true,
+        respectDNT: true
         // Avoids sending pageview hits from custom paths
         // exclude: ["/preview/**", "/do-not-track/me/too/"],
         // Enables Google Optimize using your container Id
         // optimizeId: "YOUR_GOOGLE_OPTIMIZE_TRACKING_ID",
-      },
+      }
     },
     {
       resolve: 'gatsby-plugin-feed',
@@ -82,7 +98,7 @@ module.exports = {
                   url: `${site.siteMetadata.siteUrl}/jobs/${edge.node.slug}`,
                   guid: edge.node.id,
                   date: edge.node.date,
-                  custom_elements: [{ 'content:encoded': edge.node.content }],
+                  custom_elements: [{ 'content:encoded': edge.node.content }]
                 });
               });
             },
@@ -109,7 +125,7 @@ module.exports = {
               }
             `,
             output: '/jobs.xml',
-            title: 'Job Listings at Front End Remote Jobs',
+            title: 'Job Listings at Front End Remote Jobs'
           },
           {
             serialize: ({ query: { site, allWordpressPost } }) => {
@@ -122,7 +138,7 @@ module.exports = {
                   }`,
                   guid: edge.node.id,
                   date: edge.node.date,
-                  custom_elements: [{ 'content:encoded': edge.node.content }],
+                  custom_elements: [{ 'content:encoded': edge.node.content }]
                 });
               });
             },
@@ -154,10 +170,10 @@ module.exports = {
             }
             `,
             output: '/articles.xml',
-            title: 'Articles at Front End Remote Jobs',
-          },
-        ],
-      },
+            title: 'Articles at Front End Remote Jobs'
+          }
+        ]
+      }
     },
     {
       resolve: 'gatsby-plugin-manifest',
@@ -171,9 +187,9 @@ module.exports = {
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: 'standalone',
         icon: 'src/images/hammer-wrench.png', // This path is relative to the root of the site.
-        include_favicon: true, // Include favicon
-      },
+        include_favicon: true // Include favicon
+      }
     },
-    'gatsby-plugin-offline',
-  ],
+    'gatsby-plugin-offline'
+  ]
 };

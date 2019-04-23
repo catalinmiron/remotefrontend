@@ -29,6 +29,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     'gatsby-plugin-catch-links',
+    'gatsby-plugin-netlify-cache',
     {
       resolve: 'gatsby-source-wordpress',
       options: {

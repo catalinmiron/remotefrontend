@@ -55,7 +55,13 @@ module.exports = {
         // See: https://github.com/isaacs/minimatch
         // Example:  `["/*/*/comments", "/yoast/**"]` will exclude routes ending in `comments` and
         // all routes that begin with `yoast` from fetch.
-        excludedRoutes: ['/*/*/comments', '/yoast/**']
+        includedRoutes: [
+          '**/posts',
+          '**/pages',
+          '**/users',
+          '**/acf',
+          '**/jobs'
+        ]
       }
     },
     {

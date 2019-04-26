@@ -21,10 +21,10 @@ class Article extends React.Component {
 
   getRandomFeaturedJob() {
     const featuredJobs = this.props.data.featuredJob.edges.filter(
-      ({ node }) => node.acf.featured && node.acf.featured[0]
+      ({ node }) => node.acf.featured
     );
 
-    const random = Math.floor(Math.random() * (featuredJobs.length - 1));
+    const random = Math.floor(Math.random() * featuredJobs.length);
 
     let featuredJob = this.props.data.featuredJob.edges[0].node;
     if (featuredJobs.length > 0) {
@@ -114,7 +114,7 @@ export const query = graphql`
           acf {
             apply_url
             company
-            featured: featured_job
+            featured
           }
         }
       }

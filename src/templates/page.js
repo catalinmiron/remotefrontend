@@ -38,7 +38,7 @@ const Page = ({ data, location }) => {
 export default Page;
 
 export const query = graphql`
-  query PagesQuery($id: String!) {
+  query PageQuery($id: String!) {
     wordpressPage(id: { eq: $id }) {
       title
       excerpt

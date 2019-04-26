@@ -14,11 +14,9 @@ const Index = ({ data, location }) => {
     return new Date(node.date) > thirtyDaysAgo;
   });
 
-  const regularJobs = jobs.filter(({ node }) => !node.acf.featured_job);
+  const regularJobs = jobs.filter(({ node }) => !node.acf.featured);
 
-  const featuredJobs = jobs.filter(({ node }) => {
-    return node.acf.featured_job !== null;
-  });
+  const featuredJobs = jobs.filter(({ node }) => node.acf.featured);
 
   return (
     <div>
@@ -80,7 +78,7 @@ export const query = graphql`
           acf {
             apply_url
             company
-            featured_job
+            featured
           }
         }
       }

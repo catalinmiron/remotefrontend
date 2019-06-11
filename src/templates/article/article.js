@@ -37,18 +37,46 @@ class Article extends React.Component {
     });
   }
 
+  extractHostname(url, tld) {
+    let hostname;
+
+    //find & remove protocol (http, ftp, etc.) and get hostname
+    if (url.indexOf('://') > -1) {
+      hostname = url.split('/')[2];
+    } else {
+      hostname = url.split('/')[0];
+    }
+
+    //find & remove port number
+    hostname = hostname.split(':')[0];
+
+    //find & remove "?"
+    hostname = hostname.split('?')[0];
+
+    if (tld) {
+      let hostnames = hostname.split('.');
+      hostname =
+        hostnames[hostnames.length - 2] + '.' + hostnames[hostnames.length - 1];
+    }
+
+    return hostname;
+  }
+
   render() {
     const post = this.props.data.wordpressPost;
     // Strip html from excerpts.
     const description = striptags(post.excerpt);
     const { featuredJob } = this.state;
+    const seo = post.yoast || {};
+    const title = seo.title || post.title;
+    const desc = seo.metadesc || description;
 
     return (
       <>
-        <Helmet
-          title={`${post.title} | Front End Remote Jobs`}
-          meta={[{ name: 'description', description }]}
-        />
+        <Helmet meta={[{ name: 'description', desc }]}>
+          <title>{`${title} | Front End Remote Jobs`}</title>
+          {seo.canonical && <link rel="canonical" href={seo.canonical} />}
+        </Helmet>
         <article className={styles.grid}>
           <div>
             <h1
@@ -58,10 +86,20 @@ class Article extends React.Component {
             <p className={styles.meta}>
               Published <i>{post.date}</i> by <b>{post.author.name}</b>
             </p>
-            <div
-              className={styles.content}
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className={styles.content}>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <p>
+                <small>
+                  <em>
+                    This post originally appeared on{' '}
+                    <a href={seo.canonical}>
+                      {this.extractHostname(seo.canonical)}
+                    </a>
+                    .
+                  </em>
+                </small>
+              </p>
+            </div>
           </div>
           <aside className={styles.sidebar}>
             <div className={styles.featured}>
@@ -96,6 +134,9 @@ export const query = graphql`
       date(formatString: "MMMM D, Y")
       author {
         name
+      }
+      yoast {
+        canonical
       }
     }
     featuredJob: allWordpressWpJobs(

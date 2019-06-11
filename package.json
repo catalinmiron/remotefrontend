@@ -6,7 +6,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "dotenv": "^6.2.0",
-    "gatsby": "^2.3.31",
+    "gatsby": "^2.8.2",
     "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-feed": "^2.0.6",
     "gatsby-plugin-google-analytics": "^2.0.6",
@@ -42,8 +42,7 @@
     "build": "gatsby build && netlify-lambda -c ./webpack.functions.js build lambda-src",
     "build:lambda": "netlify-lambda -c ./webpack.functions.js build lambda-src",
     "lambda-serve": "netlify-lambda -c ./webpack.functions.js serve lambda-src",
-    "start": "NODE_ENV=development concurrently \"npm run lambda-serve\" \"gatsby develop\" ",
-    "start:gatsby": "gatsby develop",
+    "start": "gatsby develop",
     "test": "jest",
     "test:lighthouse": "start-server-and-test serve http://localhost:9000 test"
   },

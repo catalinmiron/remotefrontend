@@ -81,6 +81,12 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-hotjar',
+      options: {
+        id: 1359108
+      }
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `

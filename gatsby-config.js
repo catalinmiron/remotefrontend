@@ -204,6 +204,12 @@ module.exports = {
         include_favicon: true // Include favicon
       }
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-env-variables',
+      options: {
+        whitelist: ['DEPLOY_PRIME_URL']
+      }
+    }
   ]
 };

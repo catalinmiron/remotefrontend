@@ -6,6 +6,7 @@ import moment from 'moment';
 import PostListing from '../components/post-listing/post-listing';
 
 const Index = ({ data, location }) => {
+  console.log(process.env.DEPLOY_PRIME_URL);
   const jobs = data.allWordpressWpJobs.edges.filter(({ node }) => {
     const thirtyDaysAgo = new Date(
       new Date().setDate(new Date().getDate() - 30)

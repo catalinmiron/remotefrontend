@@ -16,7 +16,7 @@ const Page = ({ data, location }) => {
     <>
       <Helmet
         title={`${post.title} | Front End Remote Jobs`}
-        meta={[{ name: 'description', description }]}
+        meta={[{ name: 'description', content: description }]}
       />
       <article className={styles.container}>
         <div className={styles.content}>

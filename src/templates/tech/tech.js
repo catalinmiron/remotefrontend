@@ -20,7 +20,7 @@ const Tech = ({ data }) => {
         meta={[
           {
             name: 'description',
-            description: `${data.jobs.nodes.length} remote ${
+            content: `${data.jobs.nodes.length} remote ${
               data.term.name
             } jobs. Companies like ${companies.join(', ')} are hiring remote ${
               data.term.name

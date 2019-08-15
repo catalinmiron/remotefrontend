@@ -13,7 +13,8 @@ const Blog = ({ data }) => {
         meta={[
           {
             name: 'description',
-            description: 'Fully remote jobs for front end developers.'
+            content:
+              'Articles and resources for helping front end developers get remote jobs.'
           }
         ]}
       />

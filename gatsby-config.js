@@ -60,7 +60,9 @@ module.exports = {
           '**/pages',
           '**/users',
           '**/acf',
-          '**/jobs'
+          '**/jobs',
+          '**/technology',
+          '**/experience'
         ]
       }
     },

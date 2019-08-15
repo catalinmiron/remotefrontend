@@ -17,7 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(
       `
         {
-          allWordpressWpJobs(
+          jobs: allWordpressWpJobs(
             sort: { fields: date, order: DESC }
             filter: { status: { eq: "publish" } }
           ) {
@@ -29,129 +29,113 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+
+          pages: allWordpressPage(
+            sort: { fields: date, order: DESC }
+            filter: { status: { eq: "publish" } }
+          ) {
+            edges {
+              node {
+                id
+                slug
+                status
+                template
+              }
+            }
+          }
+          posts: allWordpressPost(
+            sort: { fields: date, order: DESC }
+            filter: { status: { eq: "publish" } }
+          ) {
+            edges {
+              node {
+                id
+                slug
+                status
+                template
+              }
+            }
+          }
+          technology: allWordpressWpTechnology {
+            nodes {
+              slug
+              wordpress_id
+            }
+          }
+          experience: allWordpressWpExperience {
+            nodes {
+              slug
+              wordpress_id
+            }
+          }
         }
       `
-    )
-      .then((result) => {
-        if (result.errors) {
-          console.log(result.errors);
-          reject(result.errors);
-        }
-        const postTemplate = path.resolve('./src/templates/post/post.js');
-        // We want to create a detailed page for each
-        // post node. We'll just use the WordPress Slug for the slug.
-        // The Post ID is prefixed with 'POST_'
-        _.each(result.data.allWordpressWpJobs.edges, (edge) => {
-          createPage({
-            path: `/jobs/${edge.node.slug}`,
-            component: slash(postTemplate),
-            context: {
-              id: edge.node.id
-            }
-          });
-        });
-        resolve();
-      })
-      .then(() => {
-        // ==== PAGES (WORDPRESS NATIVE) ====
-        graphql(
-          `
-            {
-              allWordpressPage(
-                sort: { fields: date, order: DESC }
-                filter: { status: { eq: "publish" } }
-              ) {
-                edges {
-                  node {
-                    id
-                    slug
-                    status
-                    template
-                  }
-                }
-              }
-            }
-          `
-        ).then((result) => {
-          if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
-          }
+    ).then((result) => {
+      if (result.errors) {
+        console.log(result.errors);
+        reject(result.errors);
+      }
 
-          // Create Page pages.
-          const pageTemplate = path.resolve('./src/templates/page.js');
-          // We want to create a detailed page for each
-          // page node. We'll just use the WordPress Slug for the slug.
-          // The Page ID is prefixed with 'PAGE_'
-          _.each(result.data.allWordpressPage.edges, (edge) => {
-            // Gatsby uses Redux to manage its internal state.
-            // Plugins and sites can use functions like "createPage"
-            // to interact with Gatsby.
-            createPage({
-              // Each page is required to have a `path` as well
-              // as a template component. The `context` is
-              // optional but is often necessary so the template
-              // can query data specific to each page.
-              path: `/${edge.node.slug}/`,
-              component: slash(pageTemplate),
-              context: {
-                id: edge.node.id
-              }
-            });
-          });
-        });
-      })
-      .then(() => {
-        // ==== PAGES (WORDPRESS NATIVE) ====
-        graphql(
-          `
-            {
-              allWordpressPost(
-                sort: { fields: date, order: DESC }
-                filter: { status: { eq: "publish" } }
-              ) {
-                edges {
-                  node {
-                    id
-                    slug
-                    status
-                    template
-                  }
-                }
-              }
-            }
-          `
-        ).then((result) => {
-          if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
+      result.data.technology.nodes.forEach((node) => {
+        createPage({
+          path: `/remote-${node.slug}-developer-jobs`,
+          component: slash(path.resolve('./src/templates/tech/tech.js')),
+          context: {
+            id: node.wordpress_id
           }
-
-          // Create Page pages.
-          const pageTemplate = path.resolve(
-            './src/templates/article/article.js'
-          );
-          // We want to create a detailed page for each
-          // page node. We'll just use the WordPress Slug for the slug.
-          // The Page ID is prefixed with 'PAGE_'
-          _.each(result.data.allWordpressPost.edges, (edge) => {
-            // Gatsby uses Redux to manage its internal state.
-            // Plugins and sites can use functions like "createPage"
-            // to interact with Gatsby.
-            createPage({
-              // Each page is required to have a `path` as well
-              // as a template component. The `context` is
-              // optional but is often necessary so the template
-              // can query data specific to each page.
-              path: `/articles/${edge.node.slug}/`,
-              component: slash(pageTemplate),
-              context: {
-                id: edge.node.id
-              }
-            });
-          });
         });
       });
+      result.data.experience.nodes.forEach((node) => {
+        createPage({
+          path: `/${node.slug}-remote-front-end-developer-jobs`,
+          component: slash(
+            path.resolve('./src/templates/experience/experience.js')
+          ),
+          context: {
+            id: node.wordpress_id
+          }
+        });
+      });
+
+      const postTemplate = path.resolve('./src/templates/post/post.js');
+      _.each(result.data.jobs.edges, (edge) => {
+        createPage({
+          path: `/jobs/${edge.node.slug}`,
+          component: slash(postTemplate),
+          context: {
+            id: edge.node.id
+          }
+        });
+      });
+
+      // Create Page pages.
+      const pageTemplate = path.resolve('./src/templates/page.js');
+      _.each(result.data.pages.edges, (edge) => {
+        createPage({
+          path: `/${edge.node.slug}/`,
+          component: slash(pageTemplate),
+          context: {
+            id: edge.node.id
+          }
+        });
+      });
+
+      // Create Page pages.
+      const articleTemplate = path.resolve(
+        './src/templates/article/article.js'
+      );
+
+      _.each(result.data.posts.edges, (edge) => {
+        createPage({
+          path: `/articles/${edge.node.slug}/`,
+          component: slash(articleTemplate),
+          context: {
+            id: edge.node.id
+          }
+        });
+      });
+      resolve();
+    });
   });
   // ==== END POSTS ====
 };

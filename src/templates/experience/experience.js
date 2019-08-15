@@ -20,7 +20,7 @@ const Experience = ({ data }) => {
         meta={[
           {
             name: 'description',
-            description: `${data.jobs.nodes.length} ${
+            content: `${data.jobs.nodes.length} ${
               data.term.name
             } remote front end developer jobs at companies like ${companies.join(
               ', '

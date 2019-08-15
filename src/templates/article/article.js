@@ -73,7 +73,7 @@ class Article extends React.Component {
 
     return (
       <>
-        <Helmet meta={[{ name: 'description', desc }]}>
+        <Helmet meta={[{ name: 'description', content: desc }]}>
           <title>{`${title} | Front End Remote Jobs`}</title>
           {seo.canonical && <link rel="canonical" href={seo.canonical} />}
         </Helmet>

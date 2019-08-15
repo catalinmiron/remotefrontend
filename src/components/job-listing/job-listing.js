@@ -20,7 +20,7 @@ const JobListing = ({ title, excerpt, company, url, content }) => {
     <>
       <Helmet
         title={`${title} at ${company}`}
-        meta={[{ name: 'description', description }]}
+        meta={[{ name: 'description', content: description }]}
       />
       <article className={styles.wrapper}>
         <h1

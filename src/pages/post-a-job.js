@@ -104,7 +104,8 @@ class PostAJob extends React.Component {
           meta={[
             {
               name: 'description',
-              description: 'Post a job on Front End Remote Jobs.'
+              content:
+                'Get your job listing in front of thousands of front end developers every month. Post a job on Front end remote jobs.'
             }
           ]}
         />

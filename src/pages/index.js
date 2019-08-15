@@ -26,7 +26,7 @@ const Index = ({ data, location }) => {
         meta={[
           {
             name: 'description',
-            description: 'Fully remote jobs for front end developers.'
+            content: 'Fully remote jobs for front end developers.'
           }
         ]}
       />

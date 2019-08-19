@@ -5,6 +5,7 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { Link } from 'gatsby';
 import classname from 'classnames';
 import { useTech } from '../../useTech';
+import { useExperience } from '../../useExp';
 
 const title = (title, company) => (
   <h2>
@@ -13,18 +14,38 @@ const title = (title, company) => (
 );
 
 const TagLinks = ({ tags }) =>
-  tags.map((tag) => (
-    <Link className={styles.tag} to={`/remote-${tag.slug}-developer-jobs`}>
-      {tag.name}
-    </Link>
-  ));
+  tags.map((tag) => {
+    const tax = tag.taxonomy.slug;
+    let slug = `/remote-${tag.slug}-developer-jobs`;
+    if (tax === 'experience') {
+      slug = `/${tag.slug}-remote-front-end-developer-jobs`;
+    }
+
+    return (
+      <Link className={styles.tag} to={slug}>
+        {tag.name}
+      </Link>
+    );
+  });
 
 const PostListing = ({ post }) => {
   const tech = useTech();
+  const exp = useExperience();
   let tags;
 
-  if (post.technology) {
+  if (post.experience) {
     tags = [];
+
+    post.experience.forEach((id) => {
+      const tag = exp.find((term) => term.wordpress_id === id);
+      tags.push(tag);
+    });
+  }
+
+  if (post.technology) {
+    if (!Array.isArray(tags)) {
+      tags = [];
+    }
     post.technology.forEach((id) => {
       const tag = tech.find((term) => term.wordpress_id === id);
       tags.push(tag);

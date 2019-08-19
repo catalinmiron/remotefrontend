@@ -54,6 +54,7 @@ const Index = ({ data, location }) => {
               snippet: node.excerpt,
               date: moment(node.posted).fromNow(),
               slug: node.slug,
+              experience: node.experience,
               technology: node.technology
             }}
           />
@@ -77,6 +78,7 @@ export const query = graphql`
           posted: date
           date
           technology
+          experience
           acf {
             apply_url
             company

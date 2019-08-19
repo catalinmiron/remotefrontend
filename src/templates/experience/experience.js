@@ -9,7 +9,6 @@ import styles from './experience.module.scss';
 const Experience = ({ data }) => {
   const mostRecent = data.jobs.nodes[0];
   const companies = data.jobs.nodes.map((job) => job.acf.company).slice(0, 3);
-  console.log(companies);
 
   return (
     <>

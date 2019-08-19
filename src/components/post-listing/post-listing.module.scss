@@ -93,6 +93,16 @@
   }
 }
 
+.tag {
+  @include font-secondary;
+  margin-right: 0.25rem;
+  color: #000;
+  border-radius: 5px;
+
+  &:not(:last-of-type)::after {
+    content: ","
+  }
+}
 
 
 @keyframes shake {

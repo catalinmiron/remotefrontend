@@ -4,6 +4,7 @@ import styles from './post-listing.module.scss';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { Link } from 'gatsby';
 import classname from 'classnames';
+import { useTech } from '../../useTech';
 
 const title = (title, company) => (
   <h2>
@@ -11,7 +12,25 @@ const title = (title, company) => (
   </h2>
 );
 
+const TagLinks = ({ tags }) =>
+  tags.map((tag) => (
+    <Link className={styles.tag} to={`/remote-${tag.slug}-developer-jobs`}>
+      {tag.name}
+    </Link>
+  ));
+
 const PostListing = ({ post }) => {
+  const tech = useTech();
+  let tags;
+
+  if (post.technology) {
+    tags = [];
+    post.technology.forEach((id) => {
+      const tag = tech.find((term) => term.wordpress_id === id);
+      tags.push(tag);
+    });
+  }
+
   return (
     <article
       aria-label={`${post.title} at ${post.company}`}
@@ -31,6 +50,7 @@ const PostListing = ({ post }) => {
           <p className={styles.date}>{post.date}</p>
         )}
       </div>
+      {tags && <TagLinks tags={tags} />}
 
       {post.snippet && (
         <div className={styles.snippet}>

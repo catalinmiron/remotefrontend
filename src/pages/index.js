@@ -1,12 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import moment from 'moment';
 
 import PostListing from '../components/post-listing/post-listing';
 
 const Index = ({ data, location }) => {
-  console.log(process.env.DEPLOY_PRIME_URL);
   const jobs = data.allWordpressWpJobs.edges.filter(({ node }) => {
     const thirtyDaysAgo = new Date(
       new Date().setDate(new Date().getDate() - 30)
@@ -54,7 +53,8 @@ const Index = ({ data, location }) => {
               company: node.acf.company,
               snippet: node.excerpt,
               date: moment(node.posted).fromNow(),
-              slug: node.slug
+              slug: node.slug,
+              technology: node.technology
             }}
           />
         ))}
@@ -76,6 +76,7 @@ export const query = graphql`
           slug
           posted: date
           date
+          technology
           acf {
             apply_url
             company

@@ -31,8 +31,6 @@ const PostListing = ({ post }) => {
     });
   }
 
-  console.log({ tags });
-
   return (
     <article
       aria-label={`${post.title} at ${post.company}`}

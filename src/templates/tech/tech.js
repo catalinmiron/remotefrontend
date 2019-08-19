@@ -9,7 +9,6 @@ import styles from './tech.module.scss';
 const Tech = ({ data }) => {
   const mostRecent = data.jobs.nodes[0];
   const companies = data.jobs.nodes.map((job) => job.acf.company).slice(0, 3);
-  console.log(companies);
 
   return (
     <>

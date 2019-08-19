@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import moment from 'moment';
 
 import PostListing from '../components/post-listing/post-listing';
@@ -54,7 +54,8 @@ const Index = ({ data, location }) => {
               company: node.acf.company,
               snippet: node.excerpt,
               date: moment(node.posted).fromNow(),
-              slug: node.slug
+              slug: node.slug,
+              technology: node.technology
             }}
           />
         ))}
@@ -76,6 +77,7 @@ export const query = graphql`
           slug
           posted: date
           date
+          technology
           acf {
             apply_url
             company

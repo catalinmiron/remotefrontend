@@ -14,7 +14,9 @@ const title = (title, company) => (
 
 const TagLinks = ({ tags }) =>
   tags.map((tag) => (
-    <Link to={`/remote-${tag.slug}-developer-jobs`}>{tag.name}</Link>
+    <Link className={styles.tag} to={`/remote-${tag.slug}-developer-jobs`}>
+      {tag.name}
+    </Link>
   ));
 
 const PostListing = ({ post }) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStaticQuery } from 'gatsby';
 
-export const useTech = () => {
-  const { tech } = useStaticQuery(graphql`
-    query useTech {
-      tech: allWordpressWpTechnology {
+export const useExperience = () => {
+  const { exp } = useStaticQuery(graphql`
+    query useExp {
+      exp: allWordpressWpExperience {
         nodes {
           wordpress_id
           slug
@@ -17,5 +17,5 @@ export const useTech = () => {
     }
   `);
 
-  return tech.nodes;
+  return exp.nodes;
 };

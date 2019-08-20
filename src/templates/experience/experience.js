@@ -47,7 +47,9 @@ const Experience = ({ data }) => {
               company: job.acf.company,
               snippet: job.excerpt,
               date: moment(job.posted).fromNow(),
-              slug: job.slug
+              slug: job.slug,
+              technology: job.technology,
+              experience: job.experience
             }}
           />
         ))}
@@ -70,6 +72,8 @@ export const query = graphql`
         slug
         posted: date
         date
+        technology
+        experience
         acf {
           apply_url
           company

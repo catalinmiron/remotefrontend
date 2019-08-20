@@ -63,7 +63,8 @@ module.exports = {
           '**/acf',
           '**/jobs',
           '**/technology',
-          '**/experience'
+          '**/experience',
+          '**/taxonomies'
         ]
       }
     },

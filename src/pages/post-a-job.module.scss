@@ -3,9 +3,29 @@
 .container {
   max-width: 40rem;
   margin: 0 auto;
+  @include font-primary;
+
+  p {
+    font-size: 1.2em;
+  }
+
+  figure {
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  figcaption {
+    font-style: italic;
+  }
 }
 
 .postJobForm {
+  margin-top: 4rem;
+
   legend {
     font-size: 1.75rem;
   }
@@ -87,6 +107,11 @@
   &.promotionSelected {
     background-color: rgba(lightblue, 0.4);
   }
+}
+
+:global(.ql-editor) {
+  background-color: #fff;
+  min-height: 300px;
 }
 
 .preview {

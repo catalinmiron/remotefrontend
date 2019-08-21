@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import PostListing from '../components/post-listing/post-listing';
 import { graphql } from 'gatsby';
+import pageviews from '../images/pageviews.png';
 
 import styles from './post-a-job.module.scss';
 import moment from 'moment';
@@ -14,7 +15,7 @@ class PostAJob extends React.Component {
   constructor() {
     super();
     this.state = {
-      cost: 25,
+      cost: 99,
       preview: false,
       form: {
         title: '',
@@ -112,19 +113,24 @@ class PostAJob extends React.Component {
         <div className={styles.container}>
           <h1>Post a job on Front End Remote Jobs</h1>
           <p>
-            Front end remote jobs reaches the <em>best</em> front end web
-            developers who are only looking for remote work.
+            Front end remote jobs reaches the <strong>1500+</strong> of the{' '}
+            <em>best</em> front end web developers looking for remote work.
           </p>
           <p>
             By posting a job here, you get your listing directly in front of the
             developers who want to see it most.
           </p>
           <p>
-            We get 1000+ pageviews a month (and growing fast!) and each listing
-            is sent to our weekly newsletter as well (50+ subscribers).
+            We get thousands pageviews a month,{' '}
+            <strong>1500+ unique visitors</strong>, and each listing is sent to
+            our weekly newsletter as well (100+ subscribers).
           </p>
+          <figure clas>
+            <img src={pageviews} alt="4843 pageviews in July 2019" />
+            <figcaption>Monthly pageviews thru July 2019</figcaption>
+          </figure>
           <p>
-            <strong>Job listings last for 30 days, and start at $25.</strong>
+            <strong>Job listings last for 30 days, and start at $99.</strong>
           </p>
           <p>
             To get started, fill out the form below, preview your listing, and
@@ -266,9 +272,9 @@ class PostAJob extends React.Component {
                     id="featured"
                     aria-describedby="featured-post-desc"
                     onChange={this.handlePromotionChange}
-                    value={25}
+                    value={50}
                   />
-                  ✨Featured Post ✨(adds $25)
+                  ✨Featured Post ✨(adds $50)
                 </label>
                 <div>
                   <ul>

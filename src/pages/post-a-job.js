@@ -101,7 +101,7 @@ class PostAJob extends React.Component {
     return (
       <>
         <Helmet
-          title={'Post a job | Front End Remote Jobs'}
+          title={'Hire Remote Front End Developers | Front End Remote Jobs'}
           meta={[
             {
               name: 'description',

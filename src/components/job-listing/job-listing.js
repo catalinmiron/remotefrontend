@@ -6,8 +6,17 @@ import { graphql } from 'gatsby';
 
 import styles from './job-listing.module.scss';
 import CallToAction from '../call-to-action/call-to-action';
+import SEO from '../seo';
 
-const JobListing = ({ title, excerpt, company, url, content }) => {
+const JobListing = ({
+  title,
+  excerpt,
+  company,
+  url,
+  content,
+  datePosted,
+  validThrough
+}) => {
   // Strip html from excerpts.
   const description = striptags(excerpt);
 
@@ -16,11 +25,33 @@ const JobListing = ({ title, excerpt, company, url, content }) => {
     // TODO: this should be css.
   } <span style="font-weight: normal;font-family: 'Lora', sans-serif; font-style: italic; text-transform: lowercase; font-size: 0.64em">at</span> ${company}`;
 
+  const schemaContent = content.replace(/"/g, "'");
+
+  const schema = `{
+    "@context" : "https://schema.org/",
+    "@type" : "JobPosting",
+    "title" : "${title}",
+    "description" : "${schemaContent}",
+    "datePosted" : "${datePosted}",
+    "validThrough" : "${validThrough}",
+    "employmentType" : "FULL_TIME",
+    "hiringOrganization" : {
+      "@type" : "Organization",
+      "name" : "${company}"
+    },
+    "applicantLocationRequirements": {
+      "@type": "Country",
+      "name": "USA"
+    },
+    "jobLocationType": "TELECOMMUTE"
+  }`;
+
   return (
     <>
-      <Helmet
+      <SEO
         title={`${title} at ${company}`}
-        meta={[{ name: 'description', content: description }]}
+        description={description}
+        schema={schema}
       />
       <article className={styles.wrapper}>
         <h1

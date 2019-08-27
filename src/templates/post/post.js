@@ -19,6 +19,7 @@ const Post = ({ data }) => {
       url={post.acf.apply_url}
       datePosted={post.datePosted}
       validThrough={validThrough}
+      inUSA={post.acf.inUSA}
     />
   );
 };
@@ -35,6 +36,7 @@ export const query = graphql`
       acf {
         company
         apply_url
+        inUSA: in_usa
       }
       content
     }

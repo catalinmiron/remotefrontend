@@ -15,7 +15,8 @@ const JobListing = ({
   url,
   content,
   datePosted,
-  validThrough
+  validThrough,
+  inUSA
 }) => {
   // Strip html from excerpts.
   const description = striptags(excerpt);
@@ -51,7 +52,7 @@ const JobListing = ({
       <SEO
         title={`${title} at ${company}`}
         description={description}
-        schema={schema}
+        schema={inUSA && schema}
       />
       <article className={styles.wrapper}>
         <h1

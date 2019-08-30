@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import SEO from '../../components/seo';
 import PostListing from '../../components/post-listing/post-listing';
 import moment from 'moment';
 import styles from './experience.module.scss';

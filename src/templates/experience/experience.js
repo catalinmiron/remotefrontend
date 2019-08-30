@@ -12,20 +12,15 @@ const Experience = ({ data }) => {
 
   return (
     <>
-      <Helmet
+      <SEO
         title={`${
           data.term.name
         } Remote Front End Developer Jobs | Front End Remote Jobs`}
-        meta={[
-          {
-            name: 'description',
-            content: `${data.jobs.nodes.length} ${
-              data.term.name
-            } remote front end developer jobs at companies like ${companies.join(
-              ', '
-            )}, last posted ${moment(mostRecent.posted).fromNow()}`
-          }
-        ]}
+        description={`${data.jobs.nodes.length} ${
+          data.term.name
+        } remote front end developer jobs at companies like ${companies.join(
+          ', '
+        )}, last posted ${moment(mostRecent.posted).fromNow()}.`}
       />
       <h1 className={styles.title}>
         {data.term.name} Remote Front End Developer Jobs

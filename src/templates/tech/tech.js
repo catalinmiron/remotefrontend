@@ -12,20 +12,15 @@ const Tech = ({ data }) => {
 
   return (
     <>
-      <Helmet
+      <SEO
         title={`Remote ${
           data.term.name
         } Developer Jobs | Front End Remote Jobs`}
-        meta={[
-          {
-            name: 'description',
-            content: `${data.jobs.nodes.length} remote ${
-              data.term.name
-            } jobs. Companies like ${companies.join(', ')} are hiring remote ${
-              data.term.name
-            } developers, last posted ${moment(mostRecent.posted).fromNow()}`
-          }
-        ]}
+        description={`${data.jobs.nodes.length} remote ${
+          data.term.name
+        } jobs. Companies like ${companies.join(', ')} are hiring remote ${
+          data.term.name
+        } developers, last posted ${moment(mostRecent.posted).fromNow()}`}
       />
       <h1 className={styles.title}>Remote {data.term.name} Developer Jobs</h1>
       <p className={styles.description}>

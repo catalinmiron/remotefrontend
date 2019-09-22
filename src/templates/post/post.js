@@ -20,6 +20,7 @@ const Post = ({ data }) => {
       datePosted={post.datePosted}
       validThrough={validThrough}
       inUSA={post.acf.inUSA}
+      slug={post.slug}
     />
   );
 };
@@ -33,6 +34,7 @@ export const query = graphql`
       excerpt
       datePosted: date(formatString: "YYYY-MM-DD")
       rawDate: date
+      slug
       acf {
         company
         apply_url

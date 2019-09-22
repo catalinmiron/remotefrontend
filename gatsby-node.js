@@ -3,6 +3,7 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
 const slash = require('slash');
+const screenshot = require('./plugins/og-image-generator/image-generator');
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -23,9 +24,14 @@ exports.createPages = ({ graphql, actions }) => {
           ) {
             edges {
               node {
+                date
                 id
                 slug
                 status
+                title
+                acf {
+                  company
+                }
               }
             }
           }
@@ -70,7 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       `
-    ).then((result) => {
+    ).then(async (result) => {
       if (result.errors) {
         console.log(result.errors);
         reject(result.errors);
@@ -98,6 +104,22 @@ exports.createPages = ({ graphql, actions }) => {
       });
 
       const postTemplate = path.resolve('./src/templates/post/post.js');
+
+      const jobs = result.data.jobs.edges
+        // .filter(({ node }) => {
+        //   const thirtyDaysAgo = new Date(
+        //     new Date().setDate(new Date().getDate() - 30)
+        //   );
+        //   // Only show dates from 30 days ago and up.
+        //   return new Date(node.date) > thirtyDaysAgo;
+        // })
+        .map(({ node }) => ({
+          title: node.title,
+          slug: node.slug,
+          company: node.acf.company
+        }));
+      console.log(`Found ${jobs.length} jobs to generate images for.`);
+      await screenshot(jobs, 'job');
       _.each(result.data.jobs.edges, (edge) => {
         createPage({
           path: `/jobs/${edge.node.slug}`,

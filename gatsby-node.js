@@ -66,12 +66,14 @@ exports.createPages = ({ graphql, actions }) => {
             nodes {
               slug
               wordpress_id
+              name
             }
           }
           experience: allWordpressWpExperience {
             nodes {
               slug
               wordpress_id
+              name
             }
           }
         }
@@ -103,22 +105,24 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
+      const expNodes = result.data.experience.nodes.map(({ name, slug }) => ({
+        title: `${name} Remote Front End Developer Jobs`,
+        slug
+      }));
+      const techNodes = result.data.technology.nodes.map(({ name, slug }) => ({
+        title: `Remote ${name} Developer Jobs`,
+        slug
+      }));
+      const landingNodes = techNodes.concat(expNodes);
+      await screenshot(landingNodes, 'landing');
+
       const postTemplate = path.resolve('./src/templates/post/post.js');
 
-      const jobs = result.data.jobs.edges
-        // .filter(({ node }) => {
-        //   const thirtyDaysAgo = new Date(
-        //     new Date().setDate(new Date().getDate() - 30)
-        //   );
-        //   // Only show dates from 30 days ago and up.
-        //   return new Date(node.date) > thirtyDaysAgo;
-        // })
-        .map(({ node }) => ({
-          title: node.title,
-          slug: node.slug,
-          company: node.acf.company
-        }));
-      console.log(`Found ${jobs.length} jobs to generate images for.`);
+      const jobs = result.data.jobs.edges.map(({ node }) => ({
+        title: node.title,
+        slug: node.slug,
+        company: node.acf.company
+      }));
       await screenshot(jobs, 'job');
       _.each(result.data.jobs.edges, (edge) => {
         createPage({

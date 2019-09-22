@@ -8,7 +8,6 @@ import styles from './tech.module.scss';
 const Tech = ({ data }) => {
   const mostRecent = data.jobs.nodes[0];
   const companies = data.jobs.nodes.map((job) => job.acf.company).slice(0, 3);
-
   return (
     <>
       <SEO
@@ -20,6 +19,7 @@ const Tech = ({ data }) => {
         } jobs. Companies like ${companies.join(', ')} are hiring remote ${
           data.term.name
         } developers, last posted ${moment(mostRecent.posted).fromNow()}`}
+        image={`https://frontendremotejobs.com/og_image/${data.term.slug}.png`}
       />
       <h1 className={styles.title}>Remote {data.term.name} Developer Jobs</h1>
       <p className={styles.description}>

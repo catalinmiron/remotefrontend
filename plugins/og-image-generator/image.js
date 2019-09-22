@@ -41,10 +41,10 @@ function getCss(fontSize) {
       padding: 0;
     }
     .bodywrapper {
+      border: 10px solid #00645d;
       background: ${background};
-      object-fit: cover;
-      height: 600px;
-      width: 1200px;
+      height: 580px;
+      width: 1180px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -73,6 +73,12 @@ function getCss(fontSize) {
 
 module.exports = function getHtml(parsedReq) {
   const { title, company, fontSize } = parsedReq;
+  let text = `<span class="job">${title}</span>`;
+
+  if (company) {
+    text = `<span class="job">${title}</span> <span class="lora">at</span> <span class="job">${company}</span>`;
+  }
+
   return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -84,7 +90,7 @@ module.exports = function getHtml(parsedReq) {
     <body>
       <div class="bodywrapper">
         <div class="heading">
-          <span class="job">${title}</span> <span class="lora">at</span> <span class="job">${company}</span>
+          ${text}
         </div>
         <div class="footer">
           <div class="job">frontendremotejobs.com</div>

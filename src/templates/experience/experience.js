@@ -20,6 +20,7 @@ const Experience = ({ data }) => {
         } remote front end developer jobs at companies like ${companies.join(
           ', '
         )}, last posted ${moment(mostRecent.posted).fromNow()}.`}
+        image={`https://frontendremotejobs.com/og_image/${data.term.slug}.png`}
       />
       <h1 className={styles.title}>
         {data.term.name} Remote Front End Developer Jobs

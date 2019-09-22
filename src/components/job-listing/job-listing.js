@@ -54,7 +54,7 @@ const JobListing = ({
         title={`${title} at ${company}`}
         description={description}
         schema={inUSA && schema}
-        image={`/og_image/${slug}.png`}
+        image={`https://frontendremotejobs.com/og_image/${slug}.png`}
       />
       <article className={styles.wrapper}>
         <h1

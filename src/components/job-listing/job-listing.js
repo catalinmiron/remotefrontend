@@ -16,7 +16,8 @@ const JobListing = ({
   content,
   datePosted,
   validThrough,
-  inUSA
+  inUSA,
+  slug
 }) => {
   // Strip html from excerpts.
   const description = striptags(excerpt);
@@ -53,6 +54,7 @@ const JobListing = ({
         title={`${title} at ${company}`}
         description={description}
         schema={inUSA && schema}
+        image={`https://frontendremotejobs.com/og_image/${slug}.png`}
       />
       <article className={styles.wrapper}>
         <h1

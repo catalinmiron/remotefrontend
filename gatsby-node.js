@@ -3,6 +3,7 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
 const slash = require('slash');
+const screenshot = require('./plugins/og-image-generator/image-generator');
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -23,9 +24,14 @@ exports.createPages = ({ graphql, actions }) => {
           ) {
             edges {
               node {
+                date
                 id
                 slug
                 status
+                title
+                acf {
+                  company
+                }
               }
             }
           }
@@ -60,17 +66,19 @@ exports.createPages = ({ graphql, actions }) => {
             nodes {
               slug
               wordpress_id
+              name
             }
           }
           experience: allWordpressWpExperience {
             nodes {
               slug
               wordpress_id
+              name
             }
           }
         }
       `
-    ).then((result) => {
+    ).then(async (result) => {
       if (result.errors) {
         console.log(result.errors);
         reject(result.errors);
@@ -97,7 +105,25 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
+      const expNodes = result.data.experience.nodes.map(({ name, slug }) => ({
+        title: `${name} Remote Front End Developer Jobs`,
+        slug
+      }));
+      const techNodes = result.data.technology.nodes.map(({ name, slug }) => ({
+        title: `Remote ${name} Developer Jobs`,
+        slug
+      }));
+      const landingNodes = techNodes.concat(expNodes);
+      await screenshot(landingNodes, 'landing');
+
       const postTemplate = path.resolve('./src/templates/post/post.js');
+
+      const jobs = result.data.jobs.edges.map(({ node }) => ({
+        title: node.title,
+        slug: node.slug,
+        company: node.acf.company
+      }));
+      await screenshot(jobs, 'job');
       _.each(result.data.jobs.edges, (edge) => {
         createPage({
           path: `/jobs/${edge.node.slug}`,

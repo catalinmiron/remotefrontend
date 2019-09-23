@@ -1,21 +1,19 @@
 import React from 'react';
 import Layout from './src/components/layout/layout';
-import Helmet from 'react-helmet';
 
-export const wrapPageElement = ({ element, props }) => {
+exports.wrapPageElement = ({ element, props }) => {
   return <Layout {...props}>{element}</Layout>;
 };
 
-export const onRenderBody = (
-  { pathname, setPostBodyComponents },
-  pluginOptions
-) => {
-  // Adds smallchat to post-a-job page only.
+exports.onRenderBody = ({ pathname, setPostBodyComponents }, options) => {
   if (pathname.includes('post-a-job')) {
-    setPostBodyComponents([
-      <Helmet>
-        <script src="https://embed.small.chat/TNFEUQAFKGNMTA93NZ.js" async />
-      </Helmet>
+    console.log('Adding smallchat');
+    return setPostBodyComponents([
+      <script
+        key="smallchat"
+        src="https://embed.small.chat/TNFEUQAFKGNMTA93NZ.js"
+        async
+      />
     ]);
   }
 };

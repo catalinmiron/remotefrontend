@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from './src/components/layout/layout';
 
-exports.wrapPageElement = ({ element, props }) => {
+export const wrapPageElement = ({ element, props }) => {
   return <Layout {...props}>{element}</Layout>;
 };
 
-exports.onRenderBody = ({ pathname, setPostBodyComponents }, options) => {
+export const onRenderBody = ({ pathname, setPostBodyComponents }, options) => {
   if (pathname.includes('post-a-job')) {
     console.log('Adding smallchat');
     return setPostBodyComponents([

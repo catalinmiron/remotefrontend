@@ -125,7 +125,7 @@ class PostAJob extends React.Component {
             <strong>2000+ unique visitors</strong>, and each listing is sent to
             our weekly newsletter as well (100+ subscribers).
           </p>
-          <figure clas>
+          <figure>
             <img src={pageviews} alt="4843 pageviews in July 2019" />
             <figcaption>Monthly pageviews thru July 2019</figcaption>
           </figure>

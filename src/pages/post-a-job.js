@@ -113,7 +113,7 @@ class PostAJob extends React.Component {
         <div className={styles.container}>
           <h1>Post a job on Front End Remote Jobs</h1>
           <p>
-            Front end remote jobs reaches the <strong>1500+</strong> of the{' '}
+            Front end remote jobs reaches the <strong>2000+</strong> of the{' '}
             <em>best</em> front end web developers looking for remote work.
           </p>
           <p>
@@ -122,7 +122,7 @@ class PostAJob extends React.Component {
           </p>
           <p>
             We get thousands pageviews a month,{' '}
-            <strong>1500+ unique visitors</strong>, and each listing is sent to
+            <strong>2000+ unique visitors</strong>, and each listing is sent to
             our weekly newsletter as well (100+ subscribers).
           </p>
           <figure clas>

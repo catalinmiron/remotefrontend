@@ -119,7 +119,7 @@ export default class Checkout extends Component {
               // this.resetButton();
               this.setState({
                 message:
-                  'Uh oh, something went wrong 😬. Please try again, or send an email to hi@frontendremotejobs.com for support.'
+                  'Uh oh, something went wrong 😬. Please try again, or send an email to ben@frontendremotejobs.com for support.'
               });
             }
 
@@ -129,7 +129,7 @@ export default class Checkout extends Component {
             console.error('Error:', error);
             this.setState({
               message:
-                'Uh oh, something went wrong. Please try again, or send an email to hi@frontendremotejobs.com for support.'
+                'Uh oh, something went wrong. Please try again, or send an email to ben@frontendremotejobs.com for support.'
             });
           });
       }

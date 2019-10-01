@@ -16,7 +16,7 @@ class Banner extends React.Component {
     return (
       <div className={this.state.sticky ? styles.sticky : ''}>
         <div className={styles.banner}>
-          <a href="mailto:hi@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
+          <a href="mailto:ben@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
             Post a Job: $15 / month!
           </a>
         </div>

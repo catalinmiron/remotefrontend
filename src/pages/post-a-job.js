@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import PostListing from '../components/post-listing/post-listing';
 import { graphql } from 'gatsby';
-import pageviews from '../images/pageviews.png';
+import pageviews from '../images/2019-september-pageviews.png';
 
 import styles from './post-a-job.module.scss';
 import moment from 'moment';
@@ -113,21 +113,22 @@ class PostAJob extends React.Component {
         <div className={styles.container}>
           <h1>Post a job on Front End Remote Jobs</h1>
           <p>
-            Front end remote jobs reaches the <strong>2000+</strong> of the{' '}
+            Front end remote jobs reaches the <strong>2300+</strong> of the{' '}
             <em>best</em> front end web developers looking for remote work.
           </p>
           <p>
-            By posting a job here, you get your listing directly in front of the
-            developers who want to see it most.
+            We target a pretty specific niche - only front end devs and only
+            remote jobs - to make sure that the site can provide super value to
+            both devs and hiring companies.
           </p>
           <p>
             We get thousands pageviews a month,{' '}
-            <strong>2000+ unique visitors</strong>, and each listing is sent to
-            our weekly newsletter as well (100+ subscribers).
+            <strong>2300+ unique visitors</strong>, and each listing is sent to
+            our weekly newsletter as well (150+ subscribers and growing).
           </p>
           <figure>
-            <img src={pageviews} alt="4843 pageviews in July 2019" />
-            <figcaption>Monthly pageviews thru July 2019</figcaption>
+            <img src={pageviews} alt="5699 pageviews in September 2019" />
+            <figcaption>Monthly pageviews thru September 2019</figcaption>
           </figure>
           <p>
             <strong>Job listings last for 30 days, and start at $99.</strong>

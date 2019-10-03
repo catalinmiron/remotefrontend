@@ -1,9 +1,9 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import moment from 'moment';
 
 import PostListing from '../components/post-listing/post-listing';
+import SEO from '../components/seo';
 
 const Index = ({ data, location }) => {
   const jobs = data.allWordpressWpJobs.edges.filter(({ node }) => {
@@ -20,14 +20,9 @@ const Index = ({ data, location }) => {
 
   return (
     <div>
-      <Helmet
-        title={'Front End Remote Jobs'}
-        meta={[
-          {
-            name: 'description',
-            content: 'Fully remote jobs for front end developers.'
-          }
-        ]}
+      <SEO
+        title="Front End Remote Jobs"
+        image="https://frontendremotejobs.com/og_image/home.png"
       />
       <div>
         {featuredJobs.map(({ node }) => (

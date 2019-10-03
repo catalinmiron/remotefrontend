@@ -1,23 +1,18 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-
+import SEO from '../components/seo';
 import styles from './articles.module.scss';
 
 const Blog = ({ data }) => {
   const articles = data.allWordpressPost.edges;
   return (
     <>
-      <Helmet
-        title={'Articles | Front End Remote Jobs'}
-        meta={[
-          {
-            name: 'description',
-            content:
-              'Articles and resources for helping front end developers get remote jobs.'
-          }
-        ]}
+      <SEO
+        title="Articles | Front End Remote Jobs"
+        description="Articles and resources for helping front end developers get remote jobs."
+        image="https://frontendremotejobs.com/og_image/articles.png"
       />
+
       <div className={styles.container}>
         <div>
           {articles.map(({ node }) => (

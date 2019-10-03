@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-const SEO = ({ description, lang = 'en-US', title, schema, image = false }) => {
+const SEO = ({
+  description,
+  lang = 'en-US',
+  title,
+  schema,
+  image = false,
+  canonical
+}) => {
   const metaDescription =
     description || 'Fully remote jobs for front end developers.';
 
@@ -56,6 +63,7 @@ const SEO = ({ description, lang = 'en-US', title, schema, image = false }) => {
       title={title}
       meta={meta}
     >
+      {canonical && <link rel="canonical" href={canonical} />
       {schema && <script type="application/ld+json">{schema}</script>}
     </Helmet>
   );

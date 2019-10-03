@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import PostListing from '../components/post-listing/post-listing';
 import { graphql } from 'gatsby';
@@ -10,6 +9,7 @@ import moment from 'moment';
 import JobListing from '../components/job-listing/job-listing';
 import Checkout from '../components/checkout/checkout';
 import Editor from '../components/editor/editor';
+import SEO from '../components/seo';
 
 class PostAJob extends React.Component {
   constructor() {
@@ -100,15 +100,10 @@ class PostAJob extends React.Component {
     const { data } = this.props;
     return (
       <>
-        <Helmet
-          title={'Hire Remote Front End Developers | Front End Remote Jobs'}
-          meta={[
-            {
-              name: 'description',
-              content:
-                'Get your job listing in front of thousands of front end developers every month. Post a job on Front end remote jobs.'
-            }
-          ]}
+        <SEO
+          title="Hire Remote Front End Developers | Front End Remote Jobs"
+          description="Get your job listing in front of thousands of front end developers every month. Post a job on Front end remote jobs."
+          image="https://frontendremotejobs.com/og_image/post-a-job.png"
         />
         <div className={styles.container}>
           <h1>Post a job on Front End Remote Jobs</h1>

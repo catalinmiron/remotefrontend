@@ -42,6 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
           ) {
             edges {
               node {
+                title
                 id
                 slug
                 status
@@ -56,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
             edges {
               node {
                 id
+                title
                 slug
                 status
                 template
@@ -160,6 +162,37 @@ exports.createPages = ({ graphql, actions }) => {
           }
         });
       });
+
+      const otherPages = [
+        {
+          title: 'Front End Remote Jobs',
+          slug: 'home'
+        },
+        {
+          title: 'Post a Job',
+          slug: 'post-a-job'
+        },
+        {
+          title: 'Articles',
+          slug: 'articles'
+        }
+      ];
+
+      const articles = result.data.posts.edges.map(({ node }) => ({
+        title: node.title,
+        slug: node.slug
+      }));
+
+      const pages = result.data.pages.edges
+        .map(({ node }) => ({
+          title: node.title,
+          slug: node.slug
+        }))
+        .concat(articles)
+        .concat(otherPages);
+
+      await screenshot(pages, 'pages');
+
       resolve();
     });
   });

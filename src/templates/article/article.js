@@ -6,6 +6,7 @@ import FeaturedJob from '../../components/featured-job/featured-job';
 
 import styles from './article.module.scss';
 import CallToAction from '../../components/call-to-action/call-to-action';
+import SEO from '../../components/seo';
 
 class Article extends React.Component {
   constructor() {
@@ -73,10 +74,12 @@ class Article extends React.Component {
 
     return (
       <>
-        <Helmet meta={[{ name: 'description', content: desc }]}>
-          <title>{`${title} | Front End Remote Jobs`}</title>
-          {seo.canonical && <link rel="canonical" href={seo.canonical} />}
-        </Helmet>
+        <SEO
+          title={`${title} | Front End Remote Jobs`}
+          canonical={seo.canonical}
+          description={desc}
+          image={`https://frontendremotejobs.com/og_image/${post.slug}.png`}
+        />
         <article className={styles.grid}>
           <div>
             <h1
@@ -131,6 +134,7 @@ export const query = graphql`
       title
       excerpt
       content
+      slug
       date(formatString: "MMMM D, Y")
       author {
         name

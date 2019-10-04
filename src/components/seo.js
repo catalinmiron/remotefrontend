@@ -63,7 +63,7 @@ const SEO = ({
       title={title}
       meta={meta}
     >
-      {canonical && <link rel="canonical" href={canonical} />
+      {canonical && <link rel="canonical" href={canonical} />}
       {schema && <script type="application/ld+json">{schema}</script>}
     </Helmet>
   );

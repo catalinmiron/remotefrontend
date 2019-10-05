@@ -1,7 +1,7 @@
 import React from 'react';
 import striptags from 'striptags';
 import styles from './post-listing.module.scss';
-import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import { OutboundLink } from 'gatsby-plugin-gtag';
 import { Link } from 'gatsby';
 import classname from 'classnames';
 import { useTech } from '../../useTech';

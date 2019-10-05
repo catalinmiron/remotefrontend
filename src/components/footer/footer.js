@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import Nav from '../nav/nav';
-import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import { OutboundLink } from 'gatsby-plugin-gtag';
 
 import styles from './footer.module.scss';
 

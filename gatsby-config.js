@@ -77,15 +77,18 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-gtag',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: 'UA-43172667-7',
-        // Puts tracking script in the head instead of the body
-        head: false,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true
+        trackingIds: ['UA-43172667-7'],
+        gtagConfig: {
+          anonymize_ip: true
+        },
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: false,
+          // Setting this parameter is also optional
+          respectDNT: true
+        }
       }
     },
     {

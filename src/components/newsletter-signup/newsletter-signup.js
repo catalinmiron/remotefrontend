@@ -2,7 +2,6 @@ import React from 'react';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
 import styles from './newsletter-signup.module.scss';
-import { useEventTracking } from '../../useEventTracking';
 
 const url =
   'https://benjamingrobertson.us15.list-manage.com/subscribe/post?u=aafc0f8e65dbc564446043b15&amp;id=ee47f8c168';

@@ -1,28 +1,20 @@
 import React from 'react';
 import styles from './banner.module.scss';
+import classnames from 'classnames';
+import useWindowWidth from '../../useWindowWidth';
 
-class Banner extends React.Component {
-  constructor(props) {
-    super(props);
+const Banner = ({ location }) => {
+  const windowWidth = useWindowWidth();
+  const classes = classnames(styles.banner, {
+    [styles.sticky]:
+      windowWidth < 550 && !location.pathname.includes('/post-a-job')
+  });
 
-    const { location } = this.props;
-
-    this.state = {
-      sticky: location && location.pathname === '/',
-    };
-  }
-
-  render() {
-    return (
-      <div className={this.state.sticky ? styles.sticky : ''}>
-        <div className={styles.banner}>
-          <a href="mailto:ben@frontendremotejobs.com?subject=I'd like to post a job on frontendremotejobs.com">
-            Post a Job: $15 / month!
-          </a>
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classes}>
+      <a href="/post-a-job">Post a Job: $99!</a>
+    </div>
+  );
+};
 
 export default Banner;

@@ -16,13 +16,16 @@ const NewsletterSignup = () => (
       render={({ subscribe, status, message }) => (
         <SimpleForm
           onSubmitted={(formData) => {
-            subscribe(formData);
+            console.log(typeof window);
             if (typeof window !== 'undefined') {
+              console.log(window.gtag);
               window.gtag('event', 'subscribe', {
                 event_category: 'subscribe',
-                event_label: 'header'
+                event_action: 'header',
+                event_label: window.location.pathname
               });
             }
+            subscribe(formData);
           }}
         />
       )}

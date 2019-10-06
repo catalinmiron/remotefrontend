@@ -110,6 +110,13 @@ export default class Checkout extends Component {
             console.log(res);
 
             if (res.status === 200) {
+              if (typeof window !== undefined && window.gtag) {
+                window.gtag('event', 'jobPost', {
+                  event_category: 'jobPost',
+                  event_action: 'success',
+                  event_label: this.props.amount
+                });
+              }
               this.setState({
                 disabled: true,
                 message:

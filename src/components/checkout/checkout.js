@@ -114,7 +114,8 @@ export default class Checkout extends Component {
                 window.gtag('event', 'jobPost', {
                   event_category: 'jobPost',
                   event_action: 'success',
-                  event_label: this.props.amount
+                  event_label: this.props.amount,
+                  event_value: this.props.amount,
                 });
               }
               this.setState({

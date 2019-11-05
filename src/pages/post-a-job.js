@@ -142,7 +142,7 @@ class PostAJob extends React.Component {
             <figcaption>Monthly pageviews thru October 2019</figcaption>
           </figure>
           <p>
-            <strong>Job listings last for 30 days, and <del>start at $99</del> pay what you want!!</strong>
+            <strong>Job listings last for 30 days, and <s>start at $99</s> pay what you want!!</strong>
           </p>
           <p>
             To get started, fill out the form below, preview your listing, and

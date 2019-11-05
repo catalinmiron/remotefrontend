@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import classnames from 'classnames';
 import PostListing from '../components/post-listing/post-listing';
 import { graphql } from 'gatsby';
-import pageviews from '../images/2019-september-pageviews.png';
+import pageviews from '../images/2019-october-pageviews.png';
 
 import styles from './post-a-job.module.scss';
 import moment from 'moment';
@@ -32,6 +33,7 @@ class PostAJob extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handlePromotionChange = this.handlePromotionChange.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
     this.checkFormValidity = this.checkFormValidity.bind(this);
@@ -81,9 +83,22 @@ class PostAJob extends React.Component {
       form: { title, company, teaser, content }
     } = this.state;
 
-    if (title && company && teaser && content) return true;
+    if (title && company && teaser && content) {
+      return true;
+    }
 
     return false;
+  }
+
+  handlePriceChange(e) {
+    const value = e.currentTarget.value;
+    this.setState((prevState) => {
+      const featured = prevState.form.featured;
+      const cost = featured ? Number(value) + 50 : Number(value);
+      return ({
+        cost
+      });
+    });
   }
 
   handleContentChange(value) {
@@ -107,8 +122,9 @@ class PostAJob extends React.Component {
         />
         <div className={styles.container}>
           <h1>Post a job on Front End Remote Jobs</h1>
+          <p><em>Now through the end of the year, all job listings are pay what you want!</em></p>
           <p>
-            Front end remote jobs reaches the <strong>2300+</strong> of the{' '}
+            Front end remote jobs reaches the <strong>2800+</strong> of the{' '}
             <em>best</em> front end web developers looking for remote work.
           </p>
           <p>
@@ -118,15 +134,15 @@ class PostAJob extends React.Component {
           </p>
           <p>
             We get thousands pageviews a month,{' '}
-            <strong>2300+ unique visitors</strong>, and each listing is sent to
-            our weekly newsletter as well (150+ subscribers and growing).
+            <strong>2800+ unique visitors</strong>, and each listing is sent to
+            our weekly newsletter as well (276 subscribers and growing).
           </p>
           <figure>
-            <img src={pageviews} alt="5699 pageviews in September 2019" />
-            <figcaption>Monthly pageviews thru September 2019</figcaption>
+            <img src={pageviews} alt="8276 pageviews in October 2019" />
+            <figcaption>Monthly pageviews thru October 2019</figcaption>
           </figure>
           <p>
-            <strong>Job listings last for 30 days, and start at $99.</strong>
+            <strong>Job listings last for 30 days, and <del>start at $99</del> pay what you want!!</strong>
           </p>
           <p>
             To get started, fill out the form below, preview your listing, and
@@ -268,9 +284,9 @@ class PostAJob extends React.Component {
                     id="featured"
                     aria-describedby="featured-post-desc"
                     onChange={this.handlePromotionChange}
-                    value={50}
+                    value={99}
                   />
-                  ✨Featured Post ✨(adds $50)
+                  ✨Featured Post ✨(adds $99)
                 </label>
                 <div>
                   <ul>
@@ -283,7 +299,16 @@ class PostAJob extends React.Component {
                 </div>
               </div>
             </fieldset>
-            <div className={styles.actions}>
+            <fieldset className={styles.fieldset}>
+              <legend>💸 Payment</legend>
+              <div>
+                <label className={styles.label} htmlFor="price">Pay what you want pricing!!</label>
+                <span className={styles.helpText}>From now until the end of the year all job listings are pay what you want!</span>
+                <div className={styles.paymentField}>
+                  <span>$</span>
+                  <input className={styles.input} required min="1" defaultValue={this.state.cost} onChange={this.handlePriceChange} type="number" name="price" id="price"/>
+                </div>
+              </div>
               <Checkout
                 isValid={this.checkFormValidity}
                 form={this.form}
@@ -292,6 +317,8 @@ class PostAJob extends React.Component {
                 buttonText={`Pay $${this.state.cost} and Submit`}
                 data={data}
               />
+            </fieldset>
+            <div className={styles.actions}>
               {this.canDisplayPreview() && (
                 <button
                   className={styles.textButton}

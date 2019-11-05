@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 import classname from 'classnames';
 import { useTech } from '../../useTech';
 import { useExperience } from '../../useExp';
+import { isUnder30DaysOld } from '../job-listing/job-listing';
 
 const title = (title, company) => (
   <h2>
@@ -28,7 +29,7 @@ const TagLinks = ({ tags }) =>
     );
   });
 
-const PostListing = ({ post }) => {
+const PostListing = ({ post, rawDate }) => {
   const tech = useTech();
   const exp = useExperience();
   let tags;
@@ -51,6 +52,8 @@ const PostListing = ({ post }) => {
       tags.push(tag);
     });
   }
+
+  const showApplyURL = isUnder30DaysOld(rawDate);
 
   return (
     <article
@@ -79,9 +82,11 @@ const PostListing = ({ post }) => {
         </div>
       )}
       <div className={styles.cta}>
-        <OutboundLink className={styles.apply} href={post.path}>
-          Apply Now
-        </OutboundLink>
+        {showApplyURL && (
+          <OutboundLink className={styles.apply} href={post.path}>
+            Apply Now
+          </OutboundLink>
+        )}
         <Link to={`/jobs/${post.slug}`}>Full Description</Link>
       </div>
     </article>

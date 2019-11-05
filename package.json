@@ -52,7 +52,7 @@
   "devDependencies": {
     "chrome-launcher": "^0.10.7",
     "cli-table": "^0.3.1",
-    "eslint": "^5.16.0",
+    "eslint": "^6.6.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^24.9.0",
@@ -64,6 +64,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/benjamingrobertson/remotefrontend"
   }
 }

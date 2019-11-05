@@ -169,7 +169,7 @@ exports.createPages = ({ graphql, actions }) => {
           slug: 'home'
         },
         {
-          title: 'Post a Job',
+          title: 'Post a Job | Pay what you want!',
           slug: 'post-a-job'
         },
         {

@@ -36,6 +36,7 @@ const Experience = ({ data }) => {
         {data.jobs.nodes.map((job) => (
           <PostListing
             key={job.id}
+            rawDate={job.posted}
             post={{
               title: job.title,
               path: job.acf.apply_url,

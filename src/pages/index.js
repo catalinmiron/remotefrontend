@@ -28,6 +28,7 @@ const Index = ({ data, location }) => {
         {featuredJobs.map(({ node }) => (
           <PostListing
             key={node.id}
+            rawDate={node.posted}
             post={{
               title: node.title,
               path: node.acf.apply_url,
@@ -42,6 +43,7 @@ const Index = ({ data, location }) => {
         {regularJobs.map(({ node }) => (
           <PostListing
             key={node.id}
+            rawDate={node.posted}
             post={{
               title: node.title,
               path: node.acf.apply_url,
